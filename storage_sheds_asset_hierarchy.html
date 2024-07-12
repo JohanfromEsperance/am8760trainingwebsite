@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage Sheds Asset Hierarchy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+        }
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            height: 100vh;
+        }
+        .sidebar-left {
+            width: 20%;
+            background-color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            overflow-y: auto;
+        }
+        .sidebar-left a {
+            padding: 10px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            border-radius: 4px;
+        }
+        .sidebar-left a:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: white;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 20px;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 12px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Storage Sheds Asset Hierarchy
+    </header>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="vision.html">Vision</a>
+        <a href="key_performance_indicators.html">Key Performance Indicators</a>
+        <a href="financial_report.html">Financial Report</a>
+        <a href="state_of_the_asset_table.html">State of the Asset Table</a>
+        <a href="5x5_risk_table.html">5x5 Risk Table</a>
+        <a href="capital_investment_decision.html">Capital Investment Decision</a>
+    </nav>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2>Quick Links</h2>
+            <a href="storage_sheds_main.html">Return to Main Page</a>
+            <a href="storage_sheds_event_tables.html">Event Tables</a>
+            <a href="storage_sheds_whole_of_life_analysis.html">Whole of Life Analysis</a>
+            <a href="storage_sheds_cross_reference.html">Cross Reference Table</a>
+        </div>
+        <div class="main-content">
+            <h2>Storage Sheds Asset Hierarchy</h2>
+            <table>
+                <tr>
+                    <th>Level 0</th>
+                    <th>Level 1</th>
+                    <th>Level 2</th>
+                    <th>Level 3</th>
+                    <th>Level 4</th>
+                    <th>Level 5</th>
+                    <th>FMEA (Failure Mode)</th>
+                    <th>Maintenance Activity</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Site</td>
+                    <td>System</td>
+                    <td>Subsystem</td>
+                    <td>Equipment</td>
+                    <td>Component</td>
+                    <td>Sub-component</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Port Facility</td>
+                    <td>Storage Sheds</td>
+                    <td>Structural System</td>
+                    <td>Shed Structure</td>
+                    <td>Roof</td>
+                    <td>Roof Panels</td>
+                    <td>Roof leakage</td>
+                    <td>Inspect and repair roof panels</td>
+                    <td>Asset Value, Compliance</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Walls</td>
+                    <td>Wall Panels</td>
+                    <td>Wall damage</td>
+                    <td>Inspect and repair wall panels</td>
+                    <td>Asset Value, Compliance</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Foundation</td>
+                    <td>Footings</td>
+                    <td></td>
+                    <td>Foundation settlement</td>
+                    <td>Inspect and maintain foundations</td>
+                    <td>Asset Value, Downtime</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Doors</td>
+                    <td>Door Mechanisms</td>
+                    <td></td>
+                    <td>Door malfunction</td>
+                    <td>Inspect and repair door mechanisms</td>
+                    <td>Asset Value, Downtime</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Electrical System</td>
+                    <td>Lighting</td>
+                    <td>Light Fixtures</td>
+                    <td>Bulbs</td>
+                    <td>Lighting failure</td>
+                    <td>Inspect and replace light bulbs</td>
+                    <td>Asset Value, Compliance</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Power Supply</td>
+                    <td>Transformer</td>
+                    <td></td>
+                    <td>Transformer failure</td>
+                    <td>Inspect and maintain transformers</td>
+                    <td>Asset Value, Downtime</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Switchgear</td>
+                    <td>Circuit Breakers</td>
+                    <td></td>
+                    <td>Circuit breaker failure</td>
+                    <td>Inspect and replace circuit breakers</td>
+                    <td>Asset Value, Downtime</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Distribution Panel</td>
+                    <td>Fuses</td>
+                    <td></td>
+                    <td>Fuse failure</td>
+                    <td>Inspect and replace fuses</td>
+                    <td>Asset Value, Compliance</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Fire Suppression</td>
+                    <td>Sprinkler System</td>
+                    <td>Sprinkler Heads</td>
+                    <td>Sprinkler Valves</td>
+                    <td>Sprinkler failure</td>
+                    <td>Inspect and maintain sprinkler systems</td>
+                    <td>Compliance, HR Management</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>HVAC System</td>
+                    <td>Air Conditioning</td>
+                    <td>Compressors</td>
+                    <td>Filters</td>
+                    <td>Air conditioning failure</td>
+                    <td>Inspect and maintain air conditioning systems</td>
+                    <td>Asset Value, Compliance</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Security System</td>
+                    <td>Alarm System</td>
+                    <td>Alarms</td>
+                    <td>Alarm Circuits</td>
+                    <td>Alarm failure</td>
+                    <td>Inspect and replace alarms</td>
+                    <td>Compliance, HR Management</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Communication System</td>
+                    <td>Radios</td>
+                    <td>Antennas</td>
+                    <td></td>
+                    <td>Communication failure</td>
+                    <td>Inspect and maintain communication radios</td>
+                    <td>Asset Value, Compliance</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Pest Control</td>
+                    <td>Extermination</td>
+                    <td>Traps</td>
+                    <td>Bait</td>
+                    <td>Pest infestation</td>
+                    <td>Regular pest control and inspections</td>
+                    <td>Compliance, HR Management</td>
+                </tr>
+            </table>
+            <textarea readonly>
+                Hierarchical Levels Explanation:
+                Level 1: Enterprise
+                Level 2: Site
+                Level 3: Area
+                Level 4: Unit
+                Level 5: Equipment
+                This hierarchical structure is based on ISO 14224 and helps in organizing assets in a structured manner for efficient management.
+            </textarea>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Asset Mastery Plus. All rights reserved.</p>
+    </footer>
+</body>
+</html>

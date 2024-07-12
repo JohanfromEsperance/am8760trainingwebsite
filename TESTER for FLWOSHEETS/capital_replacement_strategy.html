@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capital Replacement Strategy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scroll on body */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 100%;
+            height: 70vh;
+            padding-top: 70px; /* Padding to avoid button interference */
+            background-color: #32cd32; /* Matching the block color */
+            border: 2px solid #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            cursor: move;
+        }
+        .content {
+            padding: 20px;
+            overflow: auto;
+            height: calc(100% - 40px);
+            background-color: #f5f5dc;
+        }
+        .prev-btn, .next-btn {
+            position: absolute;
+            top: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #ffcccb;
+            border: 1px solid #000;
+            border-radius: 5px;
+            z-index: 10;
+        }
+        .prev-btn {
+            left: 10px;
+        }
+        .next-btn {
+            right: 80px;
+        }
+    </style>
+    <script>
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        function closePopup() {
+            const popup = document.querySelector('.container');
+            document.body.removeChild(popup);
+        }
+
+        function onMouseDown(e) {
+            isDragging = true;
+            offsetX = e.clientX - parseInt(window.getComputedStyle(popup).left);
+            offsetY = e.clientY - parseInt(window.getComputedStyle(popup).top);
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        }
+
+        function onMouseMove(e) {
+            if (isDragging) {
+                popup.style.left = e.clientX - offsetX + 'px';
+                popup.style.top = e.clientY - offsetY + 'px';
+            }
+        }
+
+        function onMouseUp() {
+            isDragging = false;
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        }
+
+        window.onload = function() {
+            const popup = document.querySelector('.container');
+            popup.addEventListener('mousedown', onMouseDown);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="close-btn" onclick="closePopup()">X</div>
+            <div class="prev-btn"><a href="previous_page.html">Previous</a></div>
+            <div class="next-btn"><a href="next_page.html">Next</a></div>
+            <h3>Capital Replacement Strategy Details</h3>
+            <p><strong>Who:</strong> Asset managers, financial planners</p>
+            <p><strong>What:</strong> Strategy for replacing assets at the end of their useful life</p>
+            <p><strong>When:</strong> During strategic planning and periodic reviews</p>
+            <p><strong>Where:</strong> Asset management and financial departments</p>
+            <p><strong>With:</strong> Financial models, asset lifecycle data</p>
+            <p><strong>How:</strong> By analyzing asset lifecycles, costs, and performance to plan for replacements</p>
+            <p><strong>Why:</strong> To ensure timely and cost-effective replacement of assets</p>
+            <p><strong>Quality Check:</strong></p>
+            <ul>
+                <li>Right person (managers, planners)</li>
+                <li>Right time (planning, reviews)</li>
+                <li>Right place (management, financial departments)</li>
+                <li>Right equipment (models, data)</li>
+                <li>Right process (analyzing, planning)</li>
+                <li>Right work (effective replacement)</li>
+                <li>Right reason (timely, cost-effective)</li>
+            </ul>
+            <p><strong>Expanded Activities:</strong></p>
+            <ul>
+                <li>Analyze the lifecycle and performance data of port assets.</li>
+                <li>Develop financial models to estimate replacement costs.</li>
+                <li>Plan and document asset replacement schedules.</li>
+                <li>Regularly review and update the capital replacement strategy based on new data and operational needs.</li>
+            </ul>
+            <p><strong>Research and Benchmarking:</strong></p>
+            <ul>
+                <li><strong>Best Practices:</strong> Follow guidelines from the Association for the Advancement of Cost Engineering (AACE) for capital planning.</li>
+                <li><strong>Case Studies:</strong> Study capital replacement strategies from other ports to identify successful approaches.</li>
+                <li><strong>Benchmark Data:</strong> Compare your replacement strategy with industry benchmarks to ensure it is aligned with best practices.</li>
+            </ul>
+            <p><strong>Narrative:</strong> This block involves developing a capital replacement strategy to plan for the timely and cost-effective replacement of port assets at the end of their useful life. This includes analyzing asset lifecycles, costs, and performance data to determine the optimal replacement schedule.</p>
+        </div>
+    </div>
+</body>
+</html>

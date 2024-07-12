@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Management Interactive Diagram</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 95%;
+            height: 95vh;
+            margin: 2vh 2.5%;
+            position: relative;
+            overflow: auto; /* Allow scroll */
+            border: 1px solid #000;
+            background-color: #fff;
+        }
+        .wrapper {
+            position: absolute;
+            min-width: 3000px; /* Adjust based on number of blocks */
+            min-height: 2000px; /* Adjust based on number of blocks */
+        }
+        .block {
+            display: inline-block;
+            width: 180px;
+            height: 120px;
+            margin: 10px;
+            padding: 5px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            position: absolute;
+            color: #000;
+            text-align: center;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+            background-color: #f3f3f3; /* Default pastel background */
+        }
+        .block:nth-of-type(odd) { background-color: #fddfdf; }
+        .block:nth-of-type(even) { background-color: #defde0; }
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Ensure SVG is under the blocks */
+        }
+        marker {
+            fill: #555;
+        }
+        .popup {
+            position: fixed;
+            top: 10%;
+            left: 20%;
+            width: 60%;
+            height: 80vh;
+            border: 3px solid #000;
+            border-radius: 10px;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            overflow: auto;
+        }
+        .popup .content {
+            padding: 20px;
+            color: #000; /* Ensure readable text color */
+        }
+        .popup .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #f44336;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <!-- Blocks will be dynamically placed via JavaScript -->
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+                refX="0" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" />
+                </marker>
+            </defs>
+        </svg>
+    </div>
+    <div id="popupContainer"></div>
+    <script>
+        const blocks = [
+            "CMMS Master Data Specification", "Asset Hierarchy – Functional Design Specification",
+            "BOD Basis of Design", "Capital replacement Strategy", "Asset Register",
+            "HAZOP & Operational readiness Reviews", "As-Built P&ID", "Risk register", "Benchmark",
+            "Manufacture DOCS & IOM", "PM/CM Conversions", "Site Based Work SHOP & Reverse PMO",
+            "FMEA", "Strategy & Tactics", "Derived Task Interval", "ConMON – Asset Health",
+            "Online", "Availability", "Off-Line", "Corrective", "Weekly", "Labour", "Material",
+            "Services", "Right Sized Organisation -FTE & Seasonal Uplift", "Insurance spares",
+            "Work Management System", "Supply Chain and Warehouse System", "Contractor Management Process",
+            "Financial Management", "SAMP", "AMP", "E2E SD Services Providers",
+            "FRACAS-Failure Report Analysis & Corrective Action System"
+        ];
+
+        const wrapper = document.querySelector('.wrapper');
+        const svg = document.querySelector('svg');
+        const cols = 8; // Number of columns for block layout
+
+        function createBlock(title, index) {
+            const block = document.createElement('div');
+            const color = index % 2 === 0 ? '#fddfdf' : '#defde0'; // Cycle through two colors
+            block.className = 'block';
+            block.style.background = color;
+            block.style.left = `${(index % cols) * 220}px`; // Arrange blocks in a grid
+            block.style.top = `${Math.floor(index / cols) * 140}px`;
+            block.innerHTML = `<h3>More Details</h3><p>${title}</p>`;
+            block.onclick = () => openPopup(title, color);
+            return block;
+        }
+
+        function drawLines() {
+            svg.innerHTML = ''; // Clear previous lines
+            const blocks = document.querySelectorAll('.block');
+            const grid = Array.from(blocks).reduce((acc, block, idx) => {
+                const row = Math.floor(idx / cols);
+                const col = idx % cols;
+                if (!acc[row]) acc[row] = [];
+                acc[row][col] = block;
+                return acc;
+            }, []);
+
+            blocks.forEach((block, idx) => {
+                const row = Math.floor(idx / cols);
+                const col = idx % cols;
+                const left = block.offsetLeft;
+                const top = block.offsetTop;
+                const right = left + block.offsetWidth;
+                const bottom = top + block.offsetHeight;
+
+                // Right neighbor
+                if (grid[row][col + 1]) {
+                    drawArrow(right, top + block.offsetHeight / 2, grid[row][col + 1].offsetLeft, top + block.offsetHeight / 2);
+                }
+                // Left neighbor
+                if (grid[row][col - 1]) {
+                    drawArrow(left, top + block.offsetHeight / 2, grid[row][col - 1].offsetLeft + grid[row][col - 1].offsetWidth, top + block.offsetHeight / 2);
+                }
+                // Top neighbor
+                if (grid[row - 1] && grid[row - 1][col]) {
+                    drawArrow(left + block.offsetWidth / 2, top, left + block.offsetWidth / 2, grid[row - 1][col].offsetTop + grid[row - 1][col].offsetHeight);
+                }
+                // Bottom neighbor
+                if (grid[row + 1] && grid[row + 1][col]) {
+                    drawArrow(left + block.offsetWidth / 2, bottom, left + block.offsetWidth / 2, grid[row + 1][col].offsetTop);
+                }
+            });
+        }
+
+        function drawArrow(x1, y1, x2, y2) {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', x1);
+            line.setAttribute('y1', y1);
+            line.setAttribute('x2', x2);
+            line.setAttribute('y2', y2);
+            line.setAttribute('style', 'stroke:#555; stroke-width:3'); // Made lines wider
+            line.setAttribute('marker-start', 'url(#arrowhead)');
+            line.setAttribute('marker-end', 'url(#arrowhead)');
+            svg.appendChild(line);
+        }
+
+        function openPopup(title, color) {
+            const popupContainer = document.getElementById('popupContainer');
+            popupContainer.innerHTML = `
+                <div class="popup" style="background: ${color};">
+                    <div class="close-btn" onclick="closePopup()">X</div>
+                    <div class="content">
+                        <h1>More Details</h1>
+                        <p>Details for ${title}...</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function closePopup() {
+            const popupContainer = document.getElementById('popupContainer');
+            popupContainer.innerHTML = '';
+        }
+
+        // Generate blocks and draw lines
+        blocks.forEach((block, index) => {
+            wrapper.appendChild(createBlock(block, index));
+        });
+        drawLines();
+
+        window.addEventListener('resize', drawLines); // Redraw lines on window resize
+    </script>
+</body>
+</html>

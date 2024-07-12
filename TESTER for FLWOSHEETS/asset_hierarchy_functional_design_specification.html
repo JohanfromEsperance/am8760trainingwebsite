@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Hierarchy – Functional Design Specification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scroll on body */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 100%;
+            height: 70vh;
+            padding-top: 70px; /* Padding to avoid button interference */
+            background-color: #32cd32; /* Matching the block color */
+            border: 2px solid #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            cursor: move;
+        }
+        .content {
+            padding: 20px;
+            overflow: auto;
+            height: calc(100% - 40px);
+            background-color: #f5f5dc;
+        }
+        .prev-btn, .next-btn {
+            position: absolute;
+            top: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #ffcccb;
+            border: 1px solid #000;
+            border-radius: 5px;
+            z-index: 10;
+        }
+        .prev-btn {
+            left: 10px;
+        }
+        .next-btn {
+            right: 80px;
+        }
+    </style>
+    <script>
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        function closePopup() {
+            const popup = document.querySelector('.container');
+            document.body.removeChild(popup);
+        }
+
+        function onMouseDown(e) {
+            isDragging = true;
+            offsetX = e.clientX - parseInt(window.getComputedStyle(popup).left);
+            offsetY = e.clientY - parseInt(window.getComputedStyle(popup).top);
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        }
+
+        function onMouseMove(e) {
+            if (isDragging) {
+                popup.style.left = e.clientX - offsetX + 'px';
+                popup.style.top = e.clientY - offsetY + 'px';
+            }
+        }
+
+        function onMouseUp() {
+            isDragging = false;
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        }
+
+        window.onload = function() {
+            const popup = document.querySelector('.container');
+            popup.addEventListener('mousedown', onMouseDown);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="close-btn" onclick="closePopup()">X</div>
+            <div class="prev-btn"><a href="previous_page.html">Previous</a></div>
+            <div class="next-btn"><a href="next_page.html">Next</a></div>
+            <h3>Asset Hierarchy – Functional Design Specification Details</h3>
+            <p><strong>Who:</strong> Design engineers, asset managers</p>
+            <p><strong>What:</strong> Development of a functional design specification for the asset hierarchy</p>
+            <p><strong>When:</strong> During the design and planning phase</p>
+            <p><strong>Where:</strong> Design and planning departments</p>
+            <p><strong>With:</strong> Functional design specifications, asset hierarchy templates</p>
+            <p><strong>How:</strong> By creating detailed functional design specifications that outline the hierarchical structure of the assets</p>
+            <p><strong>Why:</strong> To provide a clear and organized structure for asset management</p>
+            <p><strong>Quality Check:</strong></p>
+            <ul>
+                <li>Right person (engineers, managers)</li>
+                <li>Right time (design and planning)</li>
+                <li>Right place (design departments)</li>
+                <li>Right equipment (specifications, templates)</li>
+                <li>Right process (developing specifications)</li>
+                <li>Right work (organized structure)</li>
+                <li>Right reason (clear management)</li>
+            </ul>
+            <p><strong>Expanded Activities:</strong></p>
+            <ul>
+                <li>Define asset classes and subclasses specific to port operations (e.g., cranes, conveyor systems).</li>
+                <li>Develop hierarchical structure templates for organizing assets.</li>
+                <li>Document functional design specifications detailing the relationships and dependencies between assets.</li>
+                <li>Validate and review the asset hierarchy with stakeholders.</li>
+            </ul>
+            <p><strong>Research and Benchmarking:</strong></p>
+            <ul>
+                <li><strong>Best Practices:</strong> Follow the guidelines provided by the Institute of Asset Management (IAM) for developing asset hierarchies.</li>
+                <li><strong>Case Studies:</strong> Examine functional design specifications from leading ports to understand how they structure their asset hierarchies.</li>
+                <li><strong>Benchmark Data:</strong> Compare your asset hierarchy with those from other major ports to ensure it meets industry standards and operational needs.</li>
+            </ul>
+            <p><strong>Narrative:</strong> This block involves developing a detailed functional design specification that outlines the hierarchical structure of port assets. This includes defining the relationships between different assets, such as container cranes, storage facilities, and support infrastructure, and creating a clear and organized structure that facilitates effective asset management and operational efficiency.</p>
+        </div>
+    </div>
+</body>
+</html>

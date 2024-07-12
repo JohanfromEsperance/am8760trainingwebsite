@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Availability</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scroll on body */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 100%;
+            height: 70vh;
+            padding-top: 70px; /* Padding to avoid button interference */
+            background-color: #ff6347; /* Matching the block color */
+            border: 2px solid #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            cursor: move;
+        }
+        .content {
+            padding: 20px;
+            overflow: auto;
+            height: calc(100% - 40px);
+            background-color: #f5f5dc;
+        }
+        .prev-btn, .next-btn {
+            position: absolute;
+            top: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: grey;
+            border: 1px solid grey;
+            border-radius: 5px;
+            z-index: 10;
+        }
+        .prev-btn {
+            left: 10px;
+        }
+        .next-btn {
+            right: 80px;
+        }
+    </style>
+    <script>
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        function closePopup() {
+            const popup = document.querySelector('.container');
+            document.body.removeChild(popup);
+        }
+
+        function onMouseDown(e) {
+            isDragging = true;
+            offsetX = e.clientX - parseInt(window.getComputedStyle(popup).left);
+            offsetY = e.clientY - parseInt(window.getComputedStyle(popup).top);
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        }
+
+        function onMouseMove(e) {
+            if (isDragging) {
+                popup.style.left = e.clientX - offsetX + 'px';
+                popup.style.top = e.clientY - offsetY + 'px';
+            }
+        }
+
+        function onMouseUp() {
+            isDragging = false;
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        }
+
+        window.onload = function() {
+            const popup = document.querySelector('.container');
+            popup.addEventListener('mousedown', onMouseDown);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="prev-btn"><a href="previous_page.html">Previous</a></div>
+            <div class="next-btn"><a href="next_page.html">Next</a></div>
+            <h3>Availability Details</h3>
+            <p><strong>Who:</strong> Operations managers, maintenance planners</p>
+            <p><strong>What:</strong> Ensuring the availability of assets for operation</p>
+            <p><strong>When:</strong> Continuously</p>
+            <p><strong>Where:</strong> Operational sites</p>
+            <p><strong>With:</strong> Availability tracking tools, CMMS</p>
+            <p><strong>How:</strong> By monitoring and managing asset availability</p>
+            <p><strong>Why:</strong> To maximize asset utilization and operational efficiency</p>
+            <p><strong>Quality Check:</strong></p>
+            <ul>
+                <li>Right person (managers, planners)</li>
+                <li>Right time (continuously)</li>
+                <li>Right place (operational sites)</li>
+                <li>Right equipment (tracking tools, CMMS)</li>
+                <li>Right process (monitoring, managing)</li>
+                <li>Right work (maximizing utilization)</li>
+                <li>Right reason (efficiency)</li>
+            </ul>
+            <p><strong>Expanded Activities:</strong></p>
+            <ul>
+                <li>Track asset availability using CMMS.</li>
+                <li>Analyze data to identify downtime and availability issues.</li>
+                <li>Implement strategies to maximize asset utilization.</li>
+                <li>Regularly review and update availability metrics.</li>
+            </ul>
+            <p><strong>Research and Benchmarking:</strong></p>
+            <ul>
+                <li><strong>Best Practices:</strong> Follow guidelines from the Institute of Asset Management (IAM) for asset availability.</li>
+                <li><strong>Case Studies:</strong> Review availability management practices from other ports to identify effective strategies.</li>
+                <li><strong>Benchmark Data:</strong> Compare your availability metrics with industry standards to ensure maximum utilization.</li>
+            </ul>
+            <p><strong>Narrative:</strong> This block involves ensuring the availability of port assets for operation by monitoring and managing their availability using tracking tools and CMMS. This helps to maximize asset utilization and operational efficiency.</p>
+        </div>
+    </div>
+</body>
+</html>

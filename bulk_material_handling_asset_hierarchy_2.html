@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Material Handling Asset Hierarchy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+        }
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            height: 100vh;
+        }
+        .sidebar-left {
+            width: 20%;
+            background-color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            overflow-y: auto;
+        }
+        .sidebar-left a {
+            padding: 10px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            border-radius: 4px;
+        }
+        .sidebar-left a:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: white;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 20px;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 12px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Bulk Material Handling Asset Hierarchy
+    </header>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="vision.html">Vision</a>
+        <a href="key_performance_indicators.html">Key Performance Indicators</a>
+        <a href="financial_report.html">Financial Report</a>
+        <a href="state_of_the_asset_table.html">State of the Asset Table</a>
+        <a href="5x5_risk_table.html">5x5 Risk Table</a>
+        <a href="capital_investment_decision.html">Capital Investment Decision</a>
+    </nav>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2>Quick Links</h2>
+            <a href="bulk_material_handling_main.html">Return to Main Page</a>
+            <a href="bulk_material_handling_event_tables.html">Event Tables</a>
+            <a href="bulk_material_handling_whole_of_life_analysis.html">Whole of Life Analysis</a>
+            <a href="bulk_material_handling_cross_reference.html">Cross Reference Table</a>
+        </div>
+        <div class="main-content">
+            <h2>Bulk Material Handling Asset Hierarchy</h2>
+            <table>
+                <tr>
+                    <th>Asset ID</th>
+                    <th>Asset Name</th>
+                    <th>Asset Description</th>
+                    <th>Initial Cost</th>
+                    <th>Maintenance Requirements</th>
+                    <th>Potential ROI</th>
+                    <th>Asset Replacement Value</th>
+                    <th>Maintenance Cost per Year</th>
+                    <th>Lifespan</th>
+                    <th>Key Performance Indicators</th>
+                    <th>Utilization</th>
+                    <th>Availability</th>
+                    <th>FMEA</th>
+                    <th>Maintenance Strategy</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>BMH-001</td>
+                    <td>Conveyor Belt</td>
+                    <td>Main conveyor belt for bulk material transport</td>
+                    <td>$500,000</td>
+                    <td>Monthly inspection and lubrication</td>
+                    <td>10%</td>
+                    <td>$550,000</td>
+                    <td>$50,000</td>
+                    <td>10 years</td>
+                    <td>Throughput, Downtime</td>
+                    <td>85%</td>
+                    <td>95%</td>
+                    <td>Possible belt wear and tear</td>
+                    <td>Preventive Maintenance</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <tr>
+                    <td>BMH-002</td>
+                    <td>Crushers</td>
+                    <td>Primary crushers for material size reduction</td>
+                    <td>$1,000,000</td>
+                    <td>Quarterly inspection and replacement of worn parts</td>
+                    <td>12%</td>
+                    <td>$1,100,000</td>
+                    <td>$100,000</td>
+                    <td>15 years</td>
+                    <td>Crushing Efficiency, Downtime</td>
+                    <td>80%</td>
+                    <td>90%</td>
+                    <td>Possible mechanical failure</td>
+                    <td>Condition-Based Maintenance</td>
+                    <td>Downtime Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+            <textarea readonly>
+                Hierarchical Levels Explanation:
+                Level 1: Enterprise
+                Level 2: Site
+                Level 3: Area
+                Level 4: Unit
+                Level 5: Equipment
+                This hierarchical structure is based on ISO 14224 and helps in organizing assets in a structured manner for efficient management.
+            </textarea>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Asset Mastery Plus. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+

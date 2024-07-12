@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Material Handling - FMEA Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .sidebar-left {
+            width: 20%;
+            background-color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+        }
+        .sidebar-left a {
+            padding: 10px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            border-radius: 4px;
+        }
+        .sidebar-left a:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td:nth-child(2) {
+            color: blue;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bulk Material Handling - FMEA Table</h1>
+    </header>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2>Quick Links</h2>
+            <a href="bulk_material_handling_main.html">Return to Bulk Material Handling</a>
+        </div>
+        <div class="main-content">
+            <h2>FMEA Table</h2>
+            <table>
+                <tr>
+                    <th>Failure Mode</th>
+                    <th>Effect</th>
+                    <th>Severity</th>
+                    <th>Occurrence</th>
+                    <th>Detection</th>
+                    <th>RPN</th>
+                </tr>
+                <tr>
+                    <td>Belt Tear</td>
+                    <td class="blue-text">Operational halt</td>
+                    <td>8</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>240</td>
+                </tr>
+                <tr>
+                    <td>Motor Failure</td>
+                    <td class="blue-text">Downtime</td>
+                    <td>7</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>140</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+        </div>
+    </div>
+</body>
+</html>

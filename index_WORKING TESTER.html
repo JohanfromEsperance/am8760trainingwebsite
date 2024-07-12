@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM8760 - Port of ExSTO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .menu {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .menu a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .menu a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .sidebar-left {
+            width: 20%;
+            background-color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+        }
+        .sidebar-left a {
+            padding: 10px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            border-radius: 4px;
+        }
+        .sidebar-left a:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            width: 60%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: white;
+            margin: auto;
+        }
+        .sidebar-right {
+            width: 20%;
+            background-color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+        }
+        .sidebar-right a {
+            padding: 10px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            border-radius: 4px;
+        }
+        .sidebar-right a:hover {
+            background-color: #45a049;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #86aaf7;
+            color: white;
+        }
+        td:nth-child(2) {
+            color: blue;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .return-button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #c9f17d;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        .return-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AM8760 Port of ExSTO</h1>
+    </header>
+    <div class="menu">
+        <a href="vision.html">Vision</a>
+        <a href="key_performance_indicators.html">Key Performance Indicators</a>
+        <a href="financial_report.html">Financial Report</a>
+        <a href="state_of_asset_table.html">State of the Asset Table</a>
+        <a href="5x5_risk_table.html">5x5 Risk Table</a>
+        <a href="capital_investment_decision.html">Capital Investment Decision</a>
+    </div>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2>Quick Links</h2>
+            <a href="bulk_material_handling_main.html">Bulk Material Handling</a>
+            <a href="storage_sheds_event_scenarios.html">Storage Sheds</a>
+            <a href="rail_infrastructure.html">Rail Infrastructure</a>
+            <a href="port_cranes.html">Port Cranes</a>
+            <a href="dust_suppression.html">Dust Suppression</a>
+            <a href="weigh_bridges.html">Weigh Bridges</a>
+            <a href="security_systems.html">Security Systems</a>
+            <a href="wharves.html">Wharves</a>
+            <a href="breakwaters.html">Breakwaters</a>
+            <a href="channels.html">Channels</a>
+            <a href="ict_tangible.html">ICT Tangible</a>
+            <a href="ict_intangible.html">ICT Intangible</a>
+            <a href="hr.html">HR</a>
+        </div>
+        <div class="main-content">
+            <h2>Welcome to Asset Mastery Plus</h2>
+            <p>Welcome to AM8760, a cutting-edge training program designed to provide you with a comprehensive understanding of asset management principles and practices. This program is rooted in the guidelines and standards set by ISO 55001 and the GFMAM (Global Forum on Maintenance and Asset Management) Landscape Edition 3. AM8760 focuses on managing assets over the full 8760 hours in a year, emphasizing the importance of monetizing time at unit rates to express efficiency.</p>
+            <p>The AM8760 training program aims to equip asset managers, maintenance professionals, and organizational leaders with the skills and knowledge necessary to optimize asset value, ensure compliance, make informed investment decisions, manage human resources effectively, and minimize downtime. By the end of this program, you will be well-versed in the critical aspects of asset management and prepared to implement best practices within your organization.</p>
+            <p>Key Topics Covered:</p>
+            <ul>
+                <li>Asset Value Management</li>
+                <li>Compliance</li>
+                <li>Investment</li>
+                <li>HR Management</li>
+                <li>Downtime Management</li>
+            </ul>
+            <p>Alignment with ISO 55001 and GFMAM:</p>
+            <p>AM8760 is meticulously designed to align with ISO 55001 and the GFMAM Landscape Edition 3. This alignment ensures that the training program adheres to international best practices and standards in asset management, providing you with a solid foundation to build upon.</p>
+            <p>Training Outcomes:</p>
+            <ul>
+                <li>Develop a strategic approach to asset management.</li>
+                <li>Improve your ability to manage risks and ensure asset reliability.</li>
+                <li>Enhance your skills in financial planning and investment decision-making.</li>
+                <li>Foster a culture of continuous improvement and compliance within your organization.</li>
+                <li>Optimize the efficiency and effectiveness of your asset management practices.</li>
+            </ul>
+            <p>We encourage you to engage actively with the content, participate in discussions, and apply the concepts learned to real-world scenarios. Welcome to the journey of mastering asset management with AM8760!</p>
+        </div>
+        <div class="sidebar-right">
+              <!-- TESTING not Working -->
+            <h2>Asset Class Information</h2>
+            <a href="#" onclick="showModal('event-card-1')">1.0 Bulk Material Handling</a>
+            <a href="#" onclick="showModal('event-card-2')">2.0 Storage Sheds</a>
+            <a href="#" onclick="showModal('event-card-3')">3.0 Rail Infrastructure</a>
+            <a href="#" onclick="showModal('event-card-4')">4.0 Ship Loaders/ Unloaders</a>
+            <a href="#" onclick="showModal('event-card-5')">5.0 Dust Supperssion Systems</a>
+            <a href="#" onclick="showModal('event-card-6')">6.0 Weighbridges</a>
+            <a href="#" onclick="showModal('event-card-7')">7.0 Security Systems</a>
+            <a href="#" onclick="showModal('event-card-9')">9.0 Wharves, Berth and Jetties</a>
+            <a href="#" onclick="showModal('event-card-10')">10.0 Breakwaters</a>
+            <a href="#" onclick="showModal('event-card-11')">11.0 Navigational Aids</a>
+            <a href="#" onclick="showModal('event-card-12')">12.0 Channels</a>
+            <a href="#" onclick="showModal('event-card-13')">13.0 ICT Tangible Assets</a>
+            <a href="#" onclick="showModal('event-card-14')">14.0 ICT In-Tangible Assets</a>
+            <a href="#" onclick="showModal('event-card-15')">15.0 Human Resource Management</a>
+            <a href="#" onclick="showModal('event-card-16')">16.0 Power Systems</a>
+            <a href="#" onclick="showModal('event-card-17')">17.0 Utilities</a>
+            <!-- Add more event cards as needed -->
+        </div>
+    </div>
+    <footer>
+        <p>&copy; ExSTO Gloabl, Johan Snyman - The Author retains moral right at all time. All rights reserved.</p>
+    </footer>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            
+            <!-- Event Card 1 Table -->
+            <table id="event-card-1" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Conveyor Belt Failure</td>
+                    <td class="blue-text">Significant downtime and operational loss</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Downtime Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- Event Card 2 Table -->
+            <table id="event-card-2" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Dust Emission Violation</td>
+                    <td class="blue-text">Environmental fines and sanctions</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>Compliance</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- Event Card 3 Table -->
+            <table id="event-card-3" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+            <!-- Add more rows as needed -->
+            </table>
+            <!-- Event Card 4 Table -->
+            <table id="event-card-4" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+            <!-- Add more rows as needed -->
+            </table>
+            <!-- Event Card 5 Table -->
+            <table id="event-card-5" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+            <!-- Add more rows as needed -->
+            </table>
+            <!-- Event Card 6 Table -->
+            <table id="event-card-6" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+                <!-- Event Card 6 Table -->
+            <table id="event-card-7" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+        <!-- Event Card 6 Table -->
+            <table id="event-card-9" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+            <!-- Event Card 6 Table -->
+            <table id="event-card-10" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+                                                                        <!-- Event Card 6 Table -->
+            <table id="event-card-11" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+            <!-- Event Card 6 Table -->
+            <table id="event-card-12" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+                                                                        <!-- Event Card 6 Table -->
+            <table id="event-card-13" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+            <!-- Event Card 6 Table -->
+            <table id="event-card-14" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+                                                                        <!-- Event Card 6 Table -->
+            <table id="event-card-16" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+            <!-- Event Card 6 Table -->
+            <table id="event-card-17" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>                                   
+        </div>
+    </div>
+</body>
+</html>

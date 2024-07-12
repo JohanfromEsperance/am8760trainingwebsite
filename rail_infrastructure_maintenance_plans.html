@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM8760 - Asset Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            height: 11%;
+            width: 100%;
+            text-align: center;
+            background-color: #ADD8E6;
+            color: white;
+            padding: 10px 0;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .logo {
+            height: 100%;
+            width: 10%;
+            position: absolute;
+            top: 0;
+        }
+        .left-logo {
+            left: 0;
+        }
+        .right-logo {
+            right: 0;
+        }
+        nav {
+            background-color: #339;
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            box-sizing: border-box;
+        }
+        nav a {
+            display: block;
+            color: white;
+            text-align: left;
+            padding: 14px 16px;
+            text-decoration: none;
+            flex: 1;
+        }
+        nav a:hover {
+            background-color: #dde;
+            color: black;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            flex-wrap: nowrap;
+            height: 60vh;
+            box-sizing: border-box;
+        }
+        .sidebar-left, .sidebar-right {
+            width: 20%;
+            background-color: #ADD;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .sidebar-left a, .sidebar-right a {
+            padding: 10px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            text-align: left;
+        }
+        .sidebar-left a:hover, .sidebar-right a:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            width: 60%;
+            padding: 30px;
+            box-sizing: border-box;
+            background-color: white;
+            overflow-y: auto; /* Added to enable scrolling */
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            left: 25%;
+            top: 25%;
+            width: 50%;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .popup h2 {
+            margin-top: 0;
+        }
+        .popup .close {
+            display: block;
+            text-align: right;
+            margin-top: -10px;
+            margin-right: -10px;
+        }
+        .popup .close a {
+            color: #ADD8E6;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        footer {
+            height: 5%;
+            width: 100%;
+            text-align: center;
+            background-color: #ADD8E6;
+            color: white;
+            padding: 10px 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo with no xSTO.png" class="logo left-logo" alt="Left Logo">
+        Bulk Material Handling - AM8760
+        <h2 style="font-size: 2rem; color:#d2a993">Bulk Material Handling - Cross Refrences</h2>
+        <img src="logo with no xSTO.png" class="logo right-logo" alt="Right Logo">
+    </header>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="vision.html">Vision</a>
+        <a href="key_performance_indicators.html">Key Performance Indicators</a>
+        <a href="financial_report.html">Financial Report</a>
+        <a href="stateoftheasset.html">State of the Asset Table</a>
+        <a href="risk.html">5x5 Risk Table</a>
+        <a href="capital_investment_decision.html">Capital Investment Decision</a>
+        <a href="training.html">TRAINING</a>
+    </nav>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2>Quick Links</h2>
+            <a href="bulk_material_handling_main.html" style="background-color: red;">1.0 Bulk Material Handling</a>
+            <a href="storage_sheds.html" style="background-color: blue;">2.0 Storage Sheds</a>
+            <a href="rail_infrastructure.html" style="background-color: green;">3.0 Rail Infrastructure</a>
+            <a href="ship_loader_unloader.html" style="background-color: yellow;">4.0 Ship Loader/Unloader</a>
+            <a href="dust_suppression.html" style="background-color: purple;">5.0 Dust Suppression Systems</a>
+            <a href="weighbridges.html" style="background-color: orange;">6.0 Weighbridges</a>
+            <a href="security_systems.html" style="background-color: pink;">7.0 Security Systems</a>
+            <a href="spare.html" style="background-color: brown;">8.0 SPARE</a>
+            <a href="wharves.html" style="background-color: cyan;">9.0 Wharves, Berths and Jetties</a>
+            <a href="breakwaters.html" style="background-color: magenta;">10.0 Breakwaters</a>
+            <a href="navigational_aids.html" style="background-color: lime;">11.0 Navigational Aids</a>
+            <a href="channels.html" style="background-color: teal;">12.0 Channels</a>
+            <a href="ict_tangible.html" style="background-color: navy;">13.0 ICT Tangible Assets</a>
+            <a href="ict_intangible.html" style="background-color: olive;">14.0 ICT Intangible Assets</a>
+            <a href="hr.html" style="background-color: maroon;">15.0 Human Resources Management</a>
+            <a href="power.html" style="background-color: silver;">16.0 Power</a>
+            <a href="utilities.html" style="background-color: gold;">17.0 Utilities</a>
+        </div>
+        <div class="main-content">
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>OEM Manual: Conveyor System</strong></p>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Introduction</strong></p>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'>Welcome to the Original Equipment Manufacturer (OEM) manual for the Conveyor System. This manual is designed to provide detailed information about the installation, operation, maintenance, and safety guidelines for your conveyor system. Following these instructions will ensure optimal performance and longevity of your equipment.</p>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Specifications</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Model:</strong> XZ-4500 Conveyor</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Capacity:</strong> 500 tons per hour</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Belt Width:</strong> 1200 mm</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Belt Speed:</strong> 2.5 m/s</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Motor Power:</strong> 100 kW</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Voltage:</strong> 400V, 50Hz</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Installation</strong></p>
+            <ol style="margin-bottom:0cm;margin-top:0cm;" start="1" type="1">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Site Preparation:</strong> Ensure the installation site is level and free of debris.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Foundation:</strong> Construct a concrete foundation as per the specified dimensions.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Assembly:</strong> Assemble the conveyor structure following the provided blueprints.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Alignment:</strong> Align the conveyor belt accurately to prevent misalignment issues.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Electrical Connections:</strong> Connect the motor to the power supply using the provided wiring diagram.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Commissioning:</strong> Conduct a trial run to ensure everything is functioning correctly.</li>
+            </ol>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Operation</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Startup:</strong> Start the conveyor system using the control panel.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Loading:</strong> Ensure materials are loaded evenly to prevent belt misalignment.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Monitoring:</strong> Continuously monitor the system for any irregular noises or vibrations.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Shutdown:</strong> Follow the standard shutdown procedure to avoid damage.</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Maintenance Activities</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Belt Replacement:</strong> Every 3 years or when wear exceeds 10%.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Motor Maintenance:</strong> Annually inspect and service the motor, including lubrication and checking electrical connections.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Roller Inspection:</strong> Quarterly check all rollers for wear and alignment, replacing any damaged components.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Belt Tension:</strong> Monthly check and adjust the belt tension as required.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Cleaning:</strong> Weekly cleaning to remove any accumulated debris or material buildup.</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Safety Guidelines</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Training:</strong> Ensure all operators are trained in the proper use of the conveyor system.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Lockout/Tagout:</strong> Follow lockout/tagout procedures during maintenance.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>PPE:</strong> Always wear appropriate personal protective equipment.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Emergency Stops:</strong> Familiarize operators with the location and operation of emergency stop buttons.</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Benchmark Data</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Belt Wear:</strong> Typically, conveyor belts in similar applications show a wear rate of 2% per year.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Motor Efficiency:</strong> The motor efficiency remains above 95% for the first 10 years with proper maintenance.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Downtime:</strong> Regular maintenance reduces unplanned downtime by 20%.</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Contact Information</strong></p>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'>For further assistance, please contact our customer service department at:</p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Phone:</strong> +1-800-123-4567</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Email:</strong> support@conveyorsystems.com</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Website:</strong> <a href=http://www.conveyorsystems.com target="_new">www.conveyorsystems.com</a></li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>OEM Manual: Transfer System</strong></p>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Introduction</strong></p>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'>Welcome to the Original Equipment Manufacturer (OEM) manual for the Transfer System. This manual provides detailed instructions on the installation, operation, and maintenance of your transfer system to ensure optimal performance and longevity.</p>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Specifications</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Model:</strong> TS-3000 Transfer System</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Capacity:</strong> 300 tons per hour</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Chute Dimensions:</strong> 800 mm x 600 mm</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Motor Power:</strong> 75 kW</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Voltage:</strong> 400V, 50Hz</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Installation</strong></p>
+            <ol style="margin-bottom:0cm;margin-top:0cm;" start="1" type="1">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Site Preparation:</strong> Ensure the installation area is clear of obstacles and debris.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Foundation:</strong> Build a stable concrete foundation as specified.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Assembly:</strong> Assemble the transfer system components according to the provided diagrams.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Alignment:</strong> Align the chute and feeder accurately.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Electrical Connections:</strong> Connect the motor and control system as per the wiring diagram.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Commissioning:</strong> Perform a test run to ensure proper installation.</li>
+            </ol>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Operation</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Startup:</strong> Activate the system using the control panel.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Loading:</strong> Load materials uniformly to avoid chute blockages.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Monitoring:</strong> Regularly check for any unusual noises or vibrations.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Shutdown:</strong> Follow the recommended shutdown procedure to avoid damage.</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Maintenance Activities</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Chute Cleaning:</strong> Monthly cleaning to remove material buildup.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Feeder Maintenance:</strong> Inspect and service the feeder quarterly.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Motor Inspection:</strong> Annual motor inspection and servicing, including lubrication and checking electrical connections.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Alignment Check:</strong> Quarterly alignment checks of the chute and feeder.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Wear Parts Replacement:</strong> Replace worn parts as needed to prevent downtime.</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Safety Guidelines</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Training:</strong> Ensure operators are properly trained in the use of the transfer system.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Lockout/Tagout:</strong> Use lockout/tagout procedures during maintenance.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>PPE:</strong> Wear appropriate personal protective equipment.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Emergency Stops:</strong> Make sure operators are familiar with the location and use of emergency stop buttons.</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Benchmark Data</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Chute Wear:</strong> Chutes typically show a wear rate of 3% per year.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Motor Efficiency:</strong> The motor maintains above 94% efficiency with regular maintenance.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Downtime:</strong> Proper maintenance can reduce unplanned downtime by 15%.</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Contact Information</strong></p>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'>For further assistance, please contact our customer service department at:</p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Phone:</strong> +1-800-123-4568</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Email:</strong> support@transfersystems.com</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Website:</strong> <a href=http://www.transfersystems.com target="_new">www.transfersystems.com</a></li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>OEM Manual: Stacker/Reclaimer</strong></p>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Introduction</strong></p>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'>Welcome to the Original Equipment Manufacturer (OEM) manual for the Stacker/Reclaimer. This manual provides comprehensive instructions for the installation, operation, and maintenance of your stacker/reclaimer to ensure peak performance and longevity.</p>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Specifications</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Model:</strong> SR-6000 Stacker/Reclaimer</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Capacity:</strong> 600 tons per hour</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Boom Length:</strong> 45 meters</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Motor Power:</strong> 150 kW</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Voltage:</strong> 400V, 50Hz</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Installation</strong></p>
+            <ol style="margin-bottom:0cm;margin-top:0cm;" start="1" type="1">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Site Preparation:</strong> Ensure the installation site is level and free of obstacles.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Foundation:</strong> Construct a reinforced concrete foundation as per specifications.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Assembly:</strong> Follow the provided assembly diagrams to construct the stacker/reclaimer.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Alignment:</strong> Align the boom and tracks accurately.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Electrical Connections:</strong> Connect the motors and control system as per the wiring diagram.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Commissioning:</strong> Conduct a trial run to verify proper installation.</li>
+            </ol>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Operation</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Startup:</strong> Start the stacker/reclaimer using the control panel.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Loading/Unloading:</strong> Ensure materials are evenly distributed to prevent imbalance.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Monitoring:</strong> Continuously monitor for any unusual noises or vibrations.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Shutdown:</strong> Follow the proper shutdown procedure to avoid damage.</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Maintenance Activities</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Boom Inspection:</strong> Quarterly inspection of the boom and structural components.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Motor Maintenance:</strong> Annual inspection and servicing of motors, including lubrication and checking electrical connections.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Slewing Mechanism Check:</strong> Quarterly checks and lubrication of the slewing mechanism.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Hydraulic System Maintenance:</strong> Inspect and maintain the hydraulic system bi-annually.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Wear Parts Replacement:</strong> Replace worn parts as necessary to prevent downtime.</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Safety Guidelines</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Training:</strong> Ensure all operators are trained in the use of the stacker/reclaimer.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Lockout/Tagout:</strong> Use lockout/tagout procedures during maintenance.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>PPE:</strong> Wear appropriate personal protective equipment.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Emergency Stops:</strong> Ensure operators know the location and use of emergency stop buttons.</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Benchmark Data</strong></p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Boom Wear:</strong> Boom components typically show a wear rate of 2.5% per year.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Motor Efficiency:</strong> Motors maintain above 93% efficiency with regular maintenance.</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Downtime:</strong> Proper maintenance reduces unplanned downtime by 18%.</li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Contact Information</strong></p>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'>For further assistance, please contact our customer service department at:</p>
+            <ul style="margin-bottom:0cm;margin-top:0cm;" type="disc">
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Phone:</strong> +1-800-123-4569</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Email:</strong> support@stackerreclaimers.com</li>
+                <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'><strong>Website:</strong> <a href=http://www.stackerreclaimers.com target="_new">www.stackerreclaimers.com</a></li>
+            </ul>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'>These manuals provide detailed guidance on the proper installation, operation, and maintenance of key components in bulk material handling systems, ensuring optimal performance and longevity of the equipment</p>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Calibri",sans-serif;'>&nbsp;</p>
+            
+        </div>
+        <div class="sidebar-right">
+            <h2>Subpages</h2>
+            <a href="rail_infrastructure_description.html" style="background-color: red;">1.1 Asset Description</a>
+            <a href="rail_infrastructure_asset_hierarchy.html" style="background-color: blue;">1.2 Asset Hierarchy</a>
+            <a href="rail_infrastructure_risk_analysis.html" style="background-color: green;">1.3 Asset Risk Analysis</a>
+            <a href="rail_infrastructure_fmea.html" style="background-color: yellow;">1.4 Asset FMEA and PMO activities</a>
+            <a href="rail_infrastructure_strategies.html" style="background-color: purple;">1.5 Asset Strategies</a>
+            <a href="rail_infrastructure_maintenance_plans.html" style="background-color: orange;">1.6 Asset Maintenance Plans</a>
+            <a href="rail_infrastructure_whole_of_life_analysis.html" style="background-color: pink;">1.7 Asset WOL Analysis</a>
+            <a href="rail_infrastructure_event_tables.html" style="background-color: brown;">1.8 Asset Event Scenarios</a>
+            <a href="index.html" style="background-color: gray;">Return to Home Page</a>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; ExSTO Global, Johan Snyman - The Auathor retains all moral rights. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showPopup(popupId) {
+            document.getElementById(popupId).style.display = 'block';
+        }
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>

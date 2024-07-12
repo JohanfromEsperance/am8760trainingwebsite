@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AM8760 - Asset Management</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            header {
+                height: 11%;
+                width: 100%;
+                text-align: center;
+                background-color: #ADD8E6;
+                color: white;
+                padding: 10px 0;
+                position: relative;
+                box-sizing: border-box;
+            }
+            .logo {
+                height: 100%;
+                width: 10%;
+                position: absolute;
+                top: 0;
+            }
+            .left-logo {
+                left: 0;
+            }
+            .right-logo {
+                right: 0;
+            }
+            nav {
+                background-color: #339;
+                overflow: hidden;
+                width: 100%;
+                display: flex;
+                justify-content: space-evenly;
+                box-sizing: border-box;
+            }
+            nav a {
+                display: block;
+                color: white;
+                text-align: left;
+                padding: 14px 16px;
+                text-decoration: none;
+                flex: 1;
+            }
+            nav a:hover {
+                background-color: #dde;
+                color: black;
+            }
+            .container {
+                display: flex;
+                flex: 1;
+                flex-wrap: nowrap;
+                height: 60vh;
+                box-sizing: border-box;
+            }
+            .sidebar-left, .sidebar-right {
+            width: 20%;
+            background-color: #ADD;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            overflow-y: auto; /* Added to enable scrolling */
+            overflow-x: auto; /* Added to enable scrolling */
+            }
+            .sidebar-left a, .sidebar-right a {
+                padding: 10px;
+                display: block;
+                color: white;
+                text-decoration: none;
+                margin-bottom: 10px;
+                border-radius: 4px;
+                text-align: left;
+            }
+            .sidebar-left a:hover, .sidebar-right a:hover {
+                background-color: #45a049;
+            }
+            .main-content {
+                width: 60%;
+                padding: 30px;
+                box-sizing: border-box;
+                background-color: white;
+                overflow-y: auto; /* Added to enable scrolling */
+            }
+            .popup {
+                display: none;
+                position: fixed;
+                left: 25%;
+                top: 25%;
+                width: 50%;
+                padding: 20px;
+                background-color: white;
+                border: 1px solid #333;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+            }
+            .popup h2 {
+                margin-top: 0;
+            }
+            .popup .close {
+                display: block;
+                text-align: right;
+                margin-top: -10px;
+                margin-right: -10px;
+            }
+            .popup .close a {
+                color: #ADD8E6;
+                text-decoration: none;
+                font-size: 24px;
+            }
+            footer {
+                height: 5%;
+                width: 100%;
+                text-align: center;
+                background-color: #ADD8E6;
+                color: white;
+                padding: 10px 0;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+<body>
+    <header>
+        <img src="logo with no xSTO.png" class="logo left-logo" alt="Left Logo">
+        Bulk Material Handling - AM8760
+        <h2 style="font-size: 2rem; color:#d2a993">Bulk Material Handling-Asset Description</h2>
+        <img src="logo with no xSTO.png" class="logo right-logo" alt="Right Logo">
+    </header>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="vision.html">Vision</a>
+        <a href="key_performance_indicators.html">Key Performance Indicators</a>
+        <a href="financial_report.html">Financial Report</a>
+        <a href="stateoftheasset.html">State of the Asset Table</a>
+        <a href="risk.html">5x5 Risk Table</a>
+        <a href="capital_investment_decision.html">Capital Investment Decision</a>
+        <a href="training.html">TRAINING</a>
+        <a href="knowledge_test.html">GFMAM Knowledge Test</a>
+        <a href="knowledge_test_ISO.html">IOS55001 Knowledge Test</a>
+    </nav>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2>Quick Links</h2>
+            <a href="bulk_material_handling_main.html" style="background-color: red;">1.0 Bulk Material Handling</a>
+            <a href="storage_sheds.html" style="background-color: blue;">2.0 Storage Sheds</a>
+            <a href="rail_infrastructure.html" style="background-color: green;">3.0 Rail Infrastructure</a>
+            <a href="ship_loader_unloader.html" style="background-color: yellow;">4.0 Ship Loader/Unloader</a>
+            <a href="dust_suppression.html" style="background-color: purple;">5.0 Dust Suppression Systems</a>
+            <a href="weighbridges.html" style="background-color: orange;">6.0 Weighbridges</a>
+            <a href="security_systems.html" style="background-color: pink;">7.0 Security Systems</a>
+            <a href="spare.html" style="background-color: brown;">8.0 SPARE</a>
+            <a href="wharves.html" style="background-color: cyan;">9.0 Wharves, Berths and Jetties</a>
+            <a href="breakwaters.html" style="background-color: magenta;">10.0 Breakwaters</a>
+            <a href="navigational_aids.html" style="background-color: lime;">11.0 Navigational Aids</a>
+            <a href="channels.html" style="background-color: teal;">12.0 Channels</a>
+            <a href="ict_tangible.html" style="background-color: navy;">13.0 ICT Tangible Assets</a>
+            <a href="ict_intangible.html" style="background-color: olive;">14.0 ICT Intangible Assets</a>
+            <a href="hr.html" style="background-color: maroon;">15.0 Human Resources Management</a>
+            <a href="power.html" style="background-color: silver;">16.0 Power</a>
+            <a href="utilities.html" style="background-color: gold;">17.0 Utilities</a>
+        </div>
+        <div class="main-content">
+            <h2>Asset Description</h2>
+            <h3>Detailed Summary: Asset Description for Bulk Material Handling Equipment for AM8760</h3>
+            <h4>Overview</h4>
+            <p>Bulk material handling equipment is integral to the operations of the Port of EXSTO, facilitating the efficient and effective transportation, storage, and handling of bulk materials such as iron ore, coal, grains, and other dry bulk commodities. The equipment is designed to move large quantities of material quickly, safely, and with minimal environmental impact.</p>
+            <h4>Key Components and Functions</h4>
+            <ol>
+                <li>
+                    <p><strong>Conveyor Systems</strong></p>
+                    <ul>
+                        <li><strong>Description</strong>: Conveyor systems are used to transport bulk materials across various stages of the handling process. They consist of belts, idlers, pulleys, motors, and gearboxes.</li>
+                        <li><strong>Key Functions</strong>: Moving bulk materials from one location to another within the facility.</li>
+                        <li><strong>Criticality</strong>: High - A failure in the conveyor system can halt operations and lead to significant downtime and financial loss.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Transfer Systems</strong></p>
+                    <ul>
+                        <li><strong>Description</strong>: These systems include transfer chutes and structures that direct the flow of materials between conveyors or to storage areas.</li>
+                        <li><strong>Key Functions</strong>: Directing and controlling the flow of bulk materials.</li>
+                        <li><strong>Criticality</strong>: Medium - Proper functioning ensures smooth transfer of materials without blockages.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Stacker/Reclaimer Systems</strong></p>
+                    <ul>
+                        <li><strong>Description</strong>: Stacker/reclaimers are large machines used to stack bulk materials in storage yards and reclaim them when needed.</li>
+                        <li><strong>Key Functions</strong>: Efficient stacking and reclaiming of bulk materials to and from stockpiles.</li>
+                        <li><strong>Criticality</strong>: High - Essential for managing storage and retrieval processes.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Dust Suppression Systems</strong></p>
+                    <ul>
+                        <li><strong>Description</strong>: These systems include dust collectors, fans, water spray systems, and control systems designed to minimize dust emissions during material handling.</li>
+                        <li><strong>Key Functions</strong>: Reducing airborne dust to ensure environmental compliance and worker safety.</li>
+                        <li><strong>Criticality</strong>: High - Ensures compliance with environmental regulations and protects worker health.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Electrical Systems</strong></p>
+                    <ul>
+                        <li><strong>Description</strong>: Comprising power supply units, transformers, switchgear, distribution panels, and lighting, the electrical systems provide necessary power and control to all bulk material handling equipment.</li>
+                        <li><strong>Key Functions</strong>: Supplying and managing power for all handling equipment.</li>
+                        <li><strong>Criticality</strong>: High - Power supply interruptions can lead to complete operational shutdowns.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Communication Systems</strong></p>
+                    <ul>
+                        <li><strong>Description</strong>: This includes cables and connectors that support communication within the facility.</li>
+                        <li><strong>Key Functions</strong>: Ensuring effective communication for operational coordination.</li>
+                        <li><strong>Criticality</strong>: Medium - Critical for operational safety and coordination.</li>
+                    </ul>
+                </li>
+            </ol>
+            <h4>Life Cycle Costing and Maintenance</h4>
+            <p>Effective lifecycle management of bulk material handling equipment involves several key activities:</p>
+            <ol>
+                <li>
+                    <p><strong>Preventive Maintenance</strong></p>
+                    <ul>
+                        <li>Regular inspections and maintenance activities to prevent equipment failures.</li>
+                        <li><strong>Examples</strong>: Lubricating bearings, inspecting belts and pulleys, and maintaining motors and gearboxes.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Corrective Maintenance</strong></p>
+                    <ul>
+                        <li>Repairs and replacements after failures occur.</li>
+                        <li><strong>Examples</strong>: Replacing damaged conveyor belts, repairing motor failures, and fixing structural components.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Condition-Based Maintenance</strong></p>
+                    <ul>
+                        <li>Monitoring the condition of equipment to perform maintenance as needed.</li>
+                        <li><strong>Examples</strong>: Using sensors to monitor motor vibrations, belt wear, and bearing temperatures.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Lifecycle Cost Analysis</strong></p>
+                    <ul>
+                        <li>Assessing the total cost of ownership over the asset&rsquo;s life, including acquisition, operation, maintenance, and disposal costs.</li>
+                        <li><strong>Examples</strong>: Evaluating the cost-effectiveness of replacing versus repairing aging components.</li>
+                    </ul>
+                </li>
+            </ol>
+            <h4>Criticality Levels and Risk Management</h4>
+            <p>Understanding the criticality levels of each component helps prioritize maintenance and investment:</p>
+            <ol>
+                <li>
+                    <p><strong>High Criticality</strong>: Components like conveyor systems, stacker/reclaimer systems, and electrical systems.</p>
+                    <ul>
+                        <li><strong>Risk Management</strong>: Implementing rigorous preventive maintenance and having backup systems in place to minimize operational downtime.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Medium Criticality</strong>: Components like transfer systems and communication systems.</p>
+                    <ul>
+                        <li><strong>Risk Management</strong>: Regular inspections and maintenance, coupled with quick response plans for any failures.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Low Criticality</strong>: Components with less impact on overall operations if they fail temporarily.</p>
+                    <ul>
+                        <li><strong>Risk Management</strong>: Periodic maintenance and monitoring, with less intensive resource allocation.</li>
+                    </ul>
+                </li>
+            </ol>
+            <h4>Sustainability and Compliance</h4>
+            <ol>
+                <li>
+                    <p><strong>Environmental Compliance</strong></p>
+                    <ul>
+                        <li>Ensuring all dust suppression systems and handling processes meet environmental regulations.</li>
+                        <li>Regular monitoring and reporting to adhere to compliance requirements.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Sustainability Initiatives</strong></p>
+                    <ul>
+                        <li>Implementing energy-efficient systems and practices to reduce the carbon footprint.</li>
+                        <li>Utilizing advanced technologies for real-time monitoring and optimization of energy use.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Health and Safety</strong></p>
+                    <ul>
+                        <li>Ensuring all equipment is safe to operate and maintaining strict safety protocols to protect workers.</li>
+                        <li>Regular training and safety drills for personnel handling bulk material equipment.</li>
+                    </ul>
+                </li>
+            </ol>
+            <h4>Key Performance Indicators (KPIs)</h4>
+            <p>Monitoring and evaluating the performance of bulk material handling equipment using KPIs:</p>
+            <ol>
+                <li>
+                    <p><strong>Availability</strong></p>
+                    <ul>
+                        <li>Measure of the operational uptime of the equipment.</li>
+                        <li><strong>Target</strong>: 95% availability.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Utilization</strong></p>
+                    <ul>
+                        <li>Degree to which the equipment is used compared to its full capacity.</li>
+                        <li><strong>Target</strong>: 85% utilization.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Maintenance Costs</strong></p>
+                    <ul>
+                        <li>Total costs incurred for maintaining the equipment.</li>
+                        <li><strong>Target</strong>: Within the allocated maintenance budget.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Operational Efficiency</strong></p>
+                    <ul>
+                        <li>Measure of the throughput and efficiency of the equipment in handling bulk materials.</li>
+                        <li><strong>Target</strong>: Optimized material handling rates with minimal delays.</li>
+                    </ul>
+                </li>
+            </ol>
+            <h4>Conclusion</h4>
+            <p>Bulk material handling equipment is vital to the operations at the Port of EXSTO. Effective management of these assets through regular maintenance, risk management, and sustainability practices ensures operational efficiency, compliance, and long-term value. By understanding the criticality levels and lifecycle costs, the port can make informed decisions to optimize the performance and reliability of its bulk material handling systems</p></div>
+        <div class="sidebar-right">
+            <h2>Subpages</h2>
+            <a href="bulk_material_handling_description.html" style="background-color: red;">1.1 Asset Description</a>
+            <a href="bulk_material_handling_asset_hierarchy.html" style="background-color: blue;">1.2 Asset Hierarchy</a>
+            <a href="bulk_material_handling_risk_analysis.html" style="background-color: green;">1.3 Asset Risk Analysis</a>
+            <a href="bulk_material_handling_fmea.html" style="background-color: yellow;">1.4 Asset FMEA and PMO activities</a>
+            <a href="bulk_material_handling_strategies.html" style="background-color: purple;">1.5 Asset Strategies</a>
+            <a href="bulk_material_handling_maintenance_plans.html" style="background-color: orange;">1.6 Asset Maintenance Plans</a>
+            <a href="bulk_material_handling_whole_of_life_analysis.html" style="background-color: pink;">1.7 Asset WOL Analysis</a>
+            <a href="bulk_material_handling_event_tables.html" style="background-color: brown;">1.8 Asset Event Scenarios</a>
+            <a href="index.html" style="background-color: gray;">Return to Home Page</a>
+        </div>
+    </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 AM8760 Asset Management Mastery Plus. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showPopup(popupId) {
+            document.getElementById(popupId).style.display = 'block';
+        }
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM8760 Full Asset Management Scenarios</title>
+</head>
+<body>
+    <h1>AM8760 Asset Management Event Scenarios</h1>
+
+    <!-- SHED Events Dropdown -->
+    <section>
+        <h2>SHED Events</h2>
+        <label for="shedEvents">Choose a SHED Event:</label>
+        <select id="shedEvents" name="shedEvents" onchange="showDetails('shed', this.value)">
+            <option value="">Select an event...</option>
+            <option value="1">Unexpected Shutdown</option>
+            <option value="2">Equipment Failure</option>
+            <option value="3">Safety Incident</option>
+        </select>
+        <div id="shedDetails" style="margin-top: 20px;"></div>
+    </section>
+
+    <!-- Transportation Events Dropdown -->
+    <section>
+        <h2>Transportation Events</h2>
+        <label for="transportEvents">Choose a Transportation Event:</label>
+        <select id="transportEvents" name="transportEvents" onchange="showDetails('transport', this.value)">
+            <option value="">Select an event...</option>
+            <option value="1">Vehicle Breakdown</option>
+            <option value="2">Traffic Disruption</option>
+            <option value="3">Fuel Shortage</option>
+        </select>
+        <div id="transportDetails" style="margin-top: 20px;"></div>
+    </section>
+
+    <!-- Warehouse Events Dropdown -->
+    <section>
+        <h2>Warehouse Events</h2>
+        <label for="warehouseEvents">Choose a Warehouse Event:</label>
+        <select id="warehouseEvents" name="warehouseEvents" onchange="showDetails('warehouse', this.value)">
+            <option value="">Select an event...</option>
+            <option value="1">Inventory Mismatch</option>
+            <option value="2">Fire Incident</option>
+            <option value="3">Security Breach</option>
+        </select>
+        <div id="warehouseDetails" style="margin-top: 20px;"></div>
+    </section>
+
+    <script>
+        function showDetails(assetGroup, scenario) {
+            var details = '';
+            switch (assetGroup + scenario) {
+                case 'shed1':
+                    details = '<strong>Action:</strong> Initiate emergency protocol, assess the situation.<br><strong>Impact:</strong> Potential delay in operations, increased maintenance costs.';
+                    break;
+                case 'shed2':
+                    details = '<strong>Action:</strong> Perform immediate equipment inspection and replacement.<br><strong>Impact:</strong> Short-term operational downtime, cost of new equipment.';
+                    break;
+                case 'shed3':
+                    details = '<strong>Action:</strong> Enforce safety protocols, initiate accident investigation.<br><strong>Impact:</strong> Legal implications, potential halts in production for safety reviews.';
+                    break;
+                case 'transport1':
+                    details = '<strong>Action:</strong> Deploy emergency response vehicles, assess vehicle for repairs.<br><strong>Impact:</strong> Delays in logistics, potential increase in delivery times.';
+                    break;
+                case 'transport2':
+                    details = '<strong>Action:</strong> Reroute traffic, communicate with stakeholders.<br><strong>Impact:</strong> Temporary disruption in operations, potential penalties.';
+                    break;
+                case 'transport3':
+                    details = '<strong>Action:</strong> Initiate fuel rationing, negotiate with suppliers.<br><strong>Impact:</strong> Operational slowdown, potential increase in operational costs.';
+                    break;
+                case 'warehouse1':
+                    details = '<strong>Action:</strong> Conduct thorough inventory check, update records.<br><strong>Impact:</strong> Administrative delays, potential financial discrepancies.';
+                    break;
+                case 'warehouse2':
+                    details = '<strong>Action:</strong> Initiate fire safety protocols, contact emergency services.<br><strong>Impact:</strong> Damage to stock, potential operational halt.';
+                    break;
+                case 'warehouse3':
+                    details = '<strong>Action:</strong> Enhance security measures, review surveillance footage.<br><strong>Impact:</strong> Increased security costs, potential legal issues.';
+                    break;
+                default:
+                    details = 'Please select an event to see the details.';
+                    break;
+            }
+            document.getElementById(assetGroup + 'Details').innerHTML = details;
+        }
+    </script>
+</body>
+</html>

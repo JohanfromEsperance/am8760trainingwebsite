@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM8760 Scenario & Event Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+            position: relative;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 1em;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 0 1em;
+        }
+        .scenario-list {
+            background-color: #fff;
+            padding: 2em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .scenario-list h1 {
+            color: #333;
+        }
+        .dropdown {
+            margin-bottom: 1em;
+        }
+        .dropdown select {
+            width: 100%;
+            padding: 0.5em;
+            font-size: 1em;
+        }
+        .scenario-description {
+            margin-top: 1em;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: 2em;
+        }
+    </style>
+    <script>
+        const scenarios = {
+            "scenario1": "Scenario 1: In this scenario, players will navigate through a dense forest, encountering various obstacles and challenges that test their survival skills. The objective is to reach the hidden treasure while managing resources and avoiding dangers.",
+            "scenario2": "Scenario 2: Set in a post-apocalyptic city, this scenario requires players to rebuild their community by gathering resources, forming alliances, and defending against hostile forces. Strategy and quick thinking are crucial for success.",
+            "scenario3": "Scenario 3: In a futuristic space station, players must solve complex puzzles to prevent a catastrophic event. This scenario emphasizes problem-solving and collaboration as players work together to save the station.",
+            "scenario4": "Scenario 4: Players find themselves in a medieval kingdom where they must navigate political intrigue and warfare. The goal is to ascend to the throne by forging alliances, winning battles, and outmaneuvering rivals.",
+            "scenario5": "Scenario 5: This underwater adventure challenges players to explore the depths of the ocean, discovering ancient ruins and battling sea creatures. The objective is to find and retrieve a lost artifact before the oxygen supply runs out.",
+            "scenario6": "Scenario 6: Set in a bustling metropolis, players must manage a tech startup, balancing innovation with financial stability. The scenario involves decision-making related to product development, marketing, and competition.",
+            "scenario7": "Scenario 7: In a mystical world filled with magic, players embark on a quest to defeat an evil sorcerer. They must gather magical items, learn spells, and recruit allies to succeed in their mission.",
+            "scenario8": "Scenario 8: This historical scenario places players in ancient Rome, where they must navigate the political landscape, engage in battles, and build their legacy. The objective is to become the most influential figure in the empire.",
+            "scenario9": "Scenario 9: Set on a deserted island, players must use their wits to survive and find a way to escape. They will need to gather resources, build shelter, and find food while dealing with natural threats.",
+            "scenario10": "Scenario 10: In a high-stakes corporate environment, players must rise through the ranks by making strategic business decisions, forming alliances, and outsmarting rivals. The goal is to become the CEO of the company."
+        };
+
+        function showDescription() {
+            var dropdown = document.getElementById("scenarioDropdown");
+            var description = document.getElementById("description");
+            var value = dropdown.value;
+
+            if (scenarios[value]) {
+                description.innerHTML = scenarios[value];
+            } else {
+                description.innerHTML = "Select a scenario to see the description.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>AM8760 Scenario & Event Cards</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="scenario-event-cards.html">Scenario & Event Cards</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="scenario-list">
+            <h1>Scenarios</h1>
+            <div class="dropdown">
+                <label for="scenarioDropdown">Select a Scenario:</label>
+                <select id="scenarioDropdown" onchange="showDescription()">
+                    <option value="">--Select a Scenario--</option>
+                    <option value="scenario1">Scenario 1</option>
+                    <option value="scenario2">Scenario 2</option>
+                    <option value="scenario3">Scenario 3</option>
+                    <option value="scenario4">Scenario 4</option>
+                    <option value="scenario5">Scenario 5</option>
+                    <option value="scenario6">Scenario 6</option>
+                    <option value="scenario7">Scenario 7</option>
+                    <option value="scenario8">Scenario 8</option>
+                    <option value="scenario9">Scenario 9</option>
+                    <option value="scenario10">Scenario 10</option>
+                </select>
+            </div>
+            <div id="description" class="scenario-description">
+                Select a scenario to see the description.
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 AM8760. All rights reserved.</p>
+    </div>
+</body>
+</html>
+

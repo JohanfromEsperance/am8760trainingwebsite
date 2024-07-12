@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM8760 - Asset Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            height: 11%;
+            width: 100%;
+            text-align: center;
+            background-color: #ADD8E6;
+            color: white;
+            padding: 10px 0;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .logo {
+            height: 100%;
+            width: 10%;
+            position: absolute;
+            top: 0;
+        }
+        .left-logo {
+            left: 0;
+        }
+        .right-logo {
+            right: 0;
+        }
+        nav {
+            background-color: #339;
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            box-sizing: border-box;
+        }
+        nav a {
+            display: block;
+            color: white;
+            text-align: left;
+            padding: 14px 16px;
+            text-decoration: none;
+            flex: 1;
+        }
+        nav a:hover {
+            background-color: #dde;
+            color: black;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            flex-wrap: nowrap;
+            height: 60vh;
+            box-sizing: border-box;
+        }
+        .sidebar-left, .sidebar-right {
+            width: 20%;
+            background-color: #ADD;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            overflow-y: auto; /* Added to enable scrolling */
+            overflow-x: auto; /* Added to enable scrolling */
+        }
+        .sidebar-left a, .sidebar-right a {
+            padding: 10px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            text-align: left;
+        }
+        .sidebar-left a:hover, .sidebar-right a:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            width: 60%;
+            padding: 30px;
+            box-sizing: border-box;
+            background-color: white;
+            overflow-y: auto; /* Added to enable scrolling */
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            left: 25%;
+            top: 25%;
+            width: 50%;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .popup h2 {
+            margin-top: 0;
+        }
+        .popup .close {
+            display: block;
+            text-align: right;
+            margin-top: -10px;
+            margin-right: -10px;
+        }
+        .popup .close a {
+            color: #ADD8E6;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        footer {
+            height: 5%;
+            width: 100%;
+            text-align: center;
+            background-color: #ADD8E6;
+            color: white;
+            padding: 10px 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo with no xSTO.png" class="logo left-logo" alt="Left Logo">
+        Bulk Material Handling - AM8760
+        <h2 style="font-size: 2rem; color:#d2a993">Bulk Material Handling-FMEA and PMO</h2>
+        <img src="logo with no xSTO.png" class="logo right-logo" alt="Right Logo">
+    </header>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="vision.html">Vision</a>
+        <a href="key_performance_indicators.html">Key Performance Indicators</a>
+        <a href="financial_report.html">Financial Report</a>
+        <a href="stateoftheasset.html">State of the Asset Table</a>
+        <a href="risk.html">5x5 Risk Table</a>
+        <a href="capital_investment_decision.html">Capital Investment Decision</a>
+        <a href="training.html">TRAINING</a>
+    </nav>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2>Quick Links</h2>
+            <a href="bulk_material_handling_main.html" style="background-color: red;">1.0 Bulk Material Handling</a>
+            <a href="storage_sheds.html" style="background-color: blue;">2.0 Storage Sheds</a>
+            <a href="rail_infrastructure.html" style="background-color: green;">3.0 Rail Infrastructure</a>
+            <a href="ship_loader_unloader.html" style="background-color: yellow;">4.0 Ship Loader/Unloader</a>
+            <a href="dust_suppression.html" style="background-color: purple;">5.0 Dust Suppression Systems</a>
+            <a href="weighbridges.html" style="background-color: orange;">6.0 Weighbridges</a>
+            <a href="security_systems.html" style="background-color: pink;">7.0 Security Systems</a>
+            <a href="spare.html" style="background-color: brown;">8.0 SPARE</a>
+            <a href="wharves.html" style="background-color: cyan;">9.0 Wharves, Berths and Jetties</a>
+            <a href="breakwaters.html" style="background-color: magenta;">10.0 Breakwaters</a>
+            <a href="navigational_aids.html" style="background-color: lime;">11.0 Navigational Aids</a>
+            <a href="channels.html" style="background-color: teal;">12.0 Channels</a>
+            <a href="ict_tangible.html" style="background-color: navy;">13.0 ICT Tangible Assets</a>
+            <a href="ict_intangible.html" style="background-color: olive;">14.0 ICT Intangible Assets</a>
+            <a href="hr.html" style="background-color: maroon;">15.0 Human Resources Management</a>
+            <a href="power.html" style="background-color: silver;">16.0 Power</a>
+            <a href="utilities.html" style="background-color: gold;">17.0 Utilities</a>
+        </div>
+        <div class="main-content">
+            <table dir="ltr" border="1" cellspacing="0" cellpadding="0" data-sheets-root="1"><colgroup><col width="169" /><col width="261" /><col width="32" /><col width="229" /><col width="30" /><col width="384" /><col width="30" /><col width="57" /><col width="397" /><col width="169" /><col width="284" /><col width="30" /><col width="139" /><col width="215" /><col width="75" /><col width="102" /><col width="162" /><col width="76" /><col width="76" /><col width="123" /></colgroup>
+                <tbody>
+                <tr>
+                <td colspan="20" rowspan="2" bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;FMEA Table and PMO Activities, for All AM8760 Asset Classes&quot;}">FMEA Table and PMO Activities</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1">&nbsp;</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="2" bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Bulk Material Handling Systems&quot;}">Bulk Material Handling Systems</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1">&nbsp;</td>
+                </tr>
+                <tr>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Failure Mode&quot;}">Failure Mode</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Potential Effects&quot;}">Potential Effects</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Severity (1-10)&quot;}">Severity (1-10)</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Potential Causes&quot;}">Potential Causes</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Occurrence (1-10)&quot;}">Occurrence (1-10)</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Current Controls&quot;}">Current Controls</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Detection (1-10)&quot;}">Detection (1-10)</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;RPN&quot;}">RPN</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Recommended Actions&quot;}">Recommended Actions</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Failure Mode&quot;}">Failure Mode</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Planned Maintenance Activity&quot;}">Planned Maintenance Activity</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Labor Hours&quot;}">Labor Hours</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Labor Type&quot;}">Labor Type</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Materials Required&quot;}">Materials Required</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Services/Contractors Required&quot;}">Services/Contractors Required</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Equipment Required&quot;}">Equipment Required</td>
+                <td bgcolor="lightgrey"  data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Decision Making Category&quot;}">Decision Making Category</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Points Awarded&quot;}">Points Awarded</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Points Deducted&quot;}">Points Deducted</td>
+                <td bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Event Card Reference&quot;}">Event Card Reference</td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Belt Tear&quot;}">Belt Tear</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Material spillage, operational downtime&quot;}">Material spillage, operational downtime</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:8}">8</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Overloading, sharp objects&quot;}">Overloading, sharp objects</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6}">6</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Regular inspections, load monitoring&quot;}">Regular inspections, load monitoring</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5}">5</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:240}">240</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Implement stronger belt materials, better load monitoring&quot;}">Implement stronger belt materials, better load monitoring</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Belt Tear&quot;}">Belt Tear</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Inspect and replace damaged belts&quot;}">Inspect and replace damaged belts</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:4}">4</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Technician&quot;}">Technician</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Replacement belts&quot;}">Replacement belts</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Asset Value, Downtime&quot;}">Asset Value, Downtime</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:20}">20</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:-40}">-40</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;BMH-001&quot;}">BMH-001</td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Motor Failure&quot;}">Motor Failure</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;System shutdown, production loss&quot;}">System shutdown, production loss</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:9}">9</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Overheating, electrical issues&quot;}">Overheating, electrical issues</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5}">5</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Regular maintenance, thermal sensors&quot;}">Regular maintenance, thermal sensors</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:4}">4</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:180}">180</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Install advanced motor monitoring systems&quot;}">Install advanced motor monitoring systems</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Motor Failure&quot;}">Motor Failure</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Inspect and maintain motors&quot;}">Inspect and maintain motors</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:3}">3</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Electrician&quot;}">Electrician</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Lubricants, cleaning agents&quot;}">Lubricants, cleaning agents</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Asset Value, Downtime&quot;}">Asset Value, Downtime</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:15}">15</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:-30}">-30</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;BMH-002&quot;}">BMH-002</td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Bearing Wear&quot;}">Bearing Wear</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Increased friction, overheating, noise&quot;}">Increased friction, overheating, noise</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6}">6</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Lack of lubrication, contamination&quot;}">Lack of lubrication, contamination</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:7}">7</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Regular lubrication schedule&quot;}">Regular lubrication schedule</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5}">5</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:210}">210</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Use high-quality lubricants, install contamination controls&quot;}">Use high-quality lubricants, install contamination controls</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Bearing Wear&quot;}">Bearing Wear</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Lubricate and replace bearings&quot;}">Lubricate and replace bearings</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:4}">4</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Technician&quot;}">Technician</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Bearings, lubricants&quot;}">Bearings, lubricants</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Asset Value, Downtime&quot;}">Asset Value, Downtime</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:15}">15</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:-30}">-30</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;BMH-003&quot;}">BMH-003</td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Belt Misalignment&quot;}">Belt Misalignment</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Increased wear, material spillage&quot;}">Increased wear, material spillage</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:7}">7</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Misadjusted rollers, uneven load&quot;}">Misadjusted rollers, uneven load</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6}">6</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Alignment checks, load distribution&quot;}">Alignment checks, load distribution</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6}">6</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:252}">252</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Install automatic belt alignment systems&quot;}">Install automatic belt alignment systems</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Belt Misalignment&quot;}">Belt Misalignment</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Inspect and realign belts&quot;}">Inspect and realign belts</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2}">2</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Technician&quot;}">Technician</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Alignment tools&quot;}">Alignment tools</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Asset Value, Downtime&quot;}">Asset Value, Downtime</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:10}">10</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:-20}">-20</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;BMH-004&quot;}">BMH-004</td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Pulley Failure&quot;}">Pulley Failure</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Belt damage, system shutdown&quot;}">Belt damage, system shutdown</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:8}">8</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Wear and tear, overloading&quot;}">Wear and tear, overloading</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5}">5</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Regular inspections, load monitoring&quot;}">Regular inspections, load monitoring</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:4}">4</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:160}">160</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Use high-quality pulleys, better load monitoring&quot;}">Use high-quality pulleys, better load monitoring</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Pulley Failure&quot;}">Pulley Failure</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Inspect and replace pulleys&quot;}">Inspect and replace pulleys</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5}">5</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Technician&quot;}">Technician</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Pulleys, lubricants&quot;}">Pulleys, lubricants</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Crane&quot;}">Crane</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Asset Value, Downtime&quot;}">Asset Value, Downtime</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:20}">20</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:-40}">-40</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;BMH-005&quot;}">BMH-005</td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Gearbox Failure&quot;}">Gearbox Failure</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Loss of power transmission, system halt&quot;}">Loss of power transmission, system halt</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:9}">9</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Overloading, lack of lubrication&quot;}">Overloading, lack of lubrication</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:4}">4</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Regular maintenance, thermal sensors&quot;}">Regular maintenance, thermal sensors</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5}">5</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:180}">180</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Implement advanced gearbox monitoring systems&quot;}">Implement advanced gearbox monitoring systems</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Gearbox Failure&quot;}">Gearbox Failure</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Inspect and maintain gearboxes&quot;}">Inspect and maintain gearboxes</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:4}">4</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Technician&quot;}">Technician</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Gear oil, seals&quot;}">Gear oil, seals</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Asset Value, Downtime&quot;}">Asset Value, Downtime</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:15}">15</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:-30}">-30</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;BMH-006&quot;}">BMH-006</td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Spillage at Transfer Points&quot;}">Spillage at Transfer Points</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Material loss, operational downtime&quot;}">Material loss, operational downtime</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:7}">7</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Poor design, misalignment&quot;}">Poor design, misalignment</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5}">5</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Regular checks, design improvements&quot;}">Regular checks, design improvements</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6}">6</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:210}">210</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Redesign transfer points, install better alignment controls&quot;}">Redesign transfer points, install better alignment controls</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Spillage at Transfer Points&quot;}">Spillage at Transfer Points</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Inspect and clean transfer points&quot;}">Inspect and clean transfer points</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:3}">3</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Laborer&quot;}">Laborer</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Cleaning agents, tools&quot;}">Cleaning agents, tools</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Asset Value, Compliance&quot;}">Asset Value, Compliance</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:10}">10</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:-20}">-20</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;BMH-007&quot;}">BMH-007</td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Conveyor Belt Slippage&quot;}">Conveyor Belt Slippage</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Reduced efficiency, material spillage&quot;}">Reduced efficiency, material spillage</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6}">6</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Inadequate tension, contamination&quot;}">Inadequate tension, contamination</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6}">6</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Tension checks, cleaning schedules&quot;}">Tension checks, cleaning schedules</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5}">5</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:180}">180</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Install automatic tensioning systems&quot;}">Install automatic tensioning systems</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Conveyor Belt Slippage&quot;}">Conveyor Belt Slippage</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Inspect and adjust belt tension&quot;}">Inspect and adjust belt tension</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2}">2</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Technician&quot;}">Technician</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Tensioning tools&quot;}">Tensioning tools</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Asset Value, Downtime&quot;}">Asset Value, Downtime</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:10}">10</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:-20}">-20</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;BMH-008&quot;}">BMH-008</td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Structural Failure&quot;}">Structural Failure</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Safety hazards, operational halt&quot;}">Safety hazards, operational halt</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:10}">10</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Overloading, corrosion&quot;}">Overloading, corrosion</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:3}">3</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Regular structural inspections&quot;}">Regular structural inspections</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:3}">3</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:90}">90</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Use corrosion-resistant materials, better load distribution&quot;}">Use corrosion-resistant materials, better load distribution</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Structural Failure&quot;}">Structural Failure</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Inspect and maintain structural components&quot;}">Inspect and maintain structural components</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6}">6</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Engineer&quot;}">Engineer</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Inspection tools, repair materials&quot;}">Inspection tools, repair materials</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Scaffolding&quot;}">Scaffolding</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Asset Value, Downtime&quot;}">Asset Value, Downtime</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:25}">25</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:-50}">-50</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;BMH-009&quot;}">BMH-009</td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Dust Accumulation&quot;}">Dust Accumulation</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Health hazards, equipment wear&quot;}">Health hazards, equipment wear</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:7}">7</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Poor ventilation, lack of cleaning&quot;}">Poor ventilation, lack of cleaning</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5}">5</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Dust extraction systems, cleaning schedules&quot;}">Dust extraction systems, cleaning schedules</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6}">6</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:210}">210</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Upgrade dust extraction systems, improve cleaning schedules&quot;}">Upgrade dust extraction systems, improve cleaning schedules</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Dust Accumulation&quot;}">Dust Accumulation</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Inspect and clean dust extraction systems&quot;}">Inspect and clean dust extraction systems</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:3}">3</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Technician&quot;}">Technician</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Cleaning agents, filters&quot;}">Cleaning agents, filters</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;None&quot;}">None</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Asset Value, Compliance&quot;}">Asset Value, Compliance</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:15}">15</td>
+                <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:-30}">-30</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;BMH-010&quot;}">BMH-010</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1">&nbsp;</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1" bgcolor="lightgrey" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;NOTES: &quot;}">NOTES:</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1">&nbsp;</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Failure Mode: The specific way in which an asset might fail.&quot;}">Failure Mode: The specific way in which an asset might fail.</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Potential Effects: The consequences of the failure mode.&quot;}">Potential Effects: The consequences of the failure mode.</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Severity (1-10): The seriousness of the effect of the failure.&quot;}">Severity (1-10): The seriousness of the effect of the failure.</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Potential Causes: Reasons why the failure might occur.&quot;}">Potential Causes: Reasons why the failure might occur.</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Occurrence (1-10): The likelihood that the failure will happen.&quot;}">Occurrence (1-10): The likelihood that the failure will happen.</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Current Controls: Existing measures in place to detect or prevent the failure.&quot;}">Current Controls: Existing measures in place to detect or prevent the failure.</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Detection (1-10): The ability to detect the failure before it occurs.&quot;}">Detection (1-10): The ability to detect the failure before it occurs.</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Risk Priority Number (RPN): A numeric assessment of risk, calculated as Severity x Occurrence x Detection.&quot;}">Risk Priority Number (RPN): A numeric assessment of risk, calculated as Severity x Occurrence x Detection.</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Recommended Actions: Suggested measures to reduce the risk of failure.&quot;}">Recommended Actions: Suggested measures to reduce the risk of failure.</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1">&nbsp;</td>
+                </tr>
+                <tr>
+                <td colspan="20" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;This FMEA table for bulk material handling systems identifies potential failure modes, their effects, causes, and the current controls in place. It also provides recommendations for mitigating risks associated with these failures. The Risk Priority Number (RPN) helps prioritize which failure modes should be addressed first&quot;}">This FMEA table for bulk material handling systems identifies potential failure modes, their effects, causes, and the current controls in place. It also provides recommendations for mitigating risks associated with these failures. The Risk Priority Number (RPN) helps prioritize which failure modes should be addressed first</td>
+                </tr>
+                </tbody>
+                </table>
+        </div>
+        <div class="sidebar-right">
+            <h2>Subpages</h2>
+            <a href="rail_infrastructure_description.html" style="background-color: red;">1.1 Asset Description</a>
+            <a href="rail_infrastructure_asset_hierarchy.html" style="background-color: blue;">1.2 Asset Hierarchy</a>
+            <a href="rail_infrastructure_risk_analysis.html" style="background-color: green;">1.3 Asset Risk Analysis</a>
+            <a href="rail_infrastructure_fmea.html" style="background-color: yellow;">1.4 Asset FMEA and PMO activities</a>
+            <a href="rail_infrastructure_strategies.html" style="background-color: purple;">1.5 Asset Strategies</a>
+            <a href="rail_infrastructure_maintenance_plans.html" style="background-color: orange;">1.6 Asset Maintenance Plans</a>
+            <a href="rail_infrastructure_whole_of_life_analysis.html" style="background-color: pink;">1.7 Asset WOL Analysis</a>
+            <a href="rail_infrastructure_event_tables.html" style="background-color: brown;">1.8 Asset Event Scenarios</a>
+            <a href="index.html" style="background-color: gray;">Return to Home Page</a>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; ExSTO Global, Johan Snyman - The Auathor retains all moral rights. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showPopup(popupId) {
+            document.getElementById(popupId).style.display = 'block';
+        }
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>

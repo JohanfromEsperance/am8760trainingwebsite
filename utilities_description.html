@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM8760 - Asset Management</title>
+    <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            header {
+                height: 11%;
+                width: 100%;
+                text-align: center;
+                background-color: #ADD8E6;
+                color: white;
+                padding: 10px 0;
+                position: relative;
+                box-sizing: border-box;
+            }
+            .logo {
+                height: 100%;
+                width: 10%;
+                position: absolute;
+                top: 0;
+            }
+            .left-logo {
+                left: 0;
+            }
+            .right-logo {
+                right: 0;
+            }
+            nav {
+                background-color: #339;
+                overflow: hidden;
+                width: 100%;
+                display: flex;
+                justify-content: space-evenly;
+                box-sizing: border-box;
+            }
+            nav a {
+                display: block;
+                color: white;
+                text-align: left;
+                padding: 14px 16px;
+                text-decoration: none;
+                flex: 1;
+            }
+            nav a:hover {
+                background-color: #dde;
+                color: black;
+            }
+            .container {
+                display: flex;
+                flex: 1;
+                flex-wrap: nowrap;
+                height: 60vh;
+                box-sizing: border-box;
+            }
+            .sidebar-left, .sidebar-right {
+                width: 20%;
+                background-color: #ADD;
+                padding: 10px;
+                box-sizing: border-box;
+                color: white;
+                font-size: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                overflow-y: auto; /* Added to enable scrolling */
+                overflow-x: auto; /* Added to enable scrolling */
+            }
+            .sidebar-left a, .sidebar-right a {
+                padding: 10px;
+                display: block;
+                color: white;
+                text-decoration: none;
+                margin-bottom: 10px;
+                border-radius: 4px;
+                text-align: left;
+    
+            }
+            .sidebar-left a:hover, .sidebar-right a:hover {
+                background-color: #45a049;
+            }
+            .main-content {
+                width: 60%;
+                padding: 30px;
+                box-sizing: border-box;
+                background-color: white;
+                overflow-y: auto; /* Added to enable scrolling */
+                overflow-x: auto; /* Added to enable scrolling */
+            }
+            .popup {
+                display: none;
+                position: fixed;
+                left: 25%;
+                top: 25%;
+                width: 50%;
+                padding: 20px;
+                background-color: white;
+                border: 1px solid #333;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+            }
+            .popup h2 {
+                margin-top: 0;
+            }
+            .popup .close {
+                display: block;
+                text-align: right;
+                margin-top: -10px;
+                margin-right: -10px;
+            }
+            .popup .close a {
+                color: #ADD8E6;
+                text-decoration: none;
+                font-size: 24px;
+            }
+            footer {
+                height: 5%;
+                width: 100%;
+                text-align: center;
+                background-color: #ADD8E6;
+                color: white;
+                padding: 10px 0;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <header>
+        <img src="logo with no xSTO.png" class="logo left-logo" alt="Left Logo">
+        Utilities- AM8760
+        <h2 style="font-size: 2rem; color:#d2a993">Utilities-Asset Description</h2>
+        <img src="logo with no xSTO.png" class="logo right-logo" alt="Right Logo">
+    </header>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="vision.html">Vision</a>
+        <a href="key_performance_indicators.html">Key Performance Indicators</a>
+        <a href="financial_report.html">Financial Report</a>
+        <a href="stateoftheasset.html">State of the Asset Table</a>
+        <a href="risk.html">5x5 Risk Table</a>
+        <a href="capital_investment_decision.html">Capital Investment Decision</a>
+        <a href="training.html">TRAINING</a>
+        <a href="knowledge_test.html">GFMAM Knowledge Test</a>
+        <a href="knowledge_test_ISO.html">IOS55001 Knowledge Test</a>
+    </nav>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2 style="font-size: rem; color:#d2a993">Quick Links</h2>
+            <a href="bulk_material_handling_main.html" style="background-color: red;">1.0 Bulk Material Handling</a>
+            <a href="storage_sheds_main.html" style="background-color: blue;">2.0 Storage Sheds</a>
+            <a href="rail_infrastructure_main.html" style="background-color: green;">3.0 Rail Infrastructure</a>
+            <a href="ship_loader_unloader_main.html" style="background-color: grey;">4.0 Ship Loader/Unloader</a>
+            <a href="dust_suppression_main.html" style="background-color: purple;">5.0 Dust Suppression Systems</a>
+            <a href="weighbridges_main.html" style="background-color: orange;">6.0 Weighbridges</a>
+            <a href="security_systems_main.html" style="background-color: pink;">7.0 Security Systems</a>
+            <a href="spare.html" style="background-color: brown;">8.0 SPARE</a>
+            <a href="wharves_main.html" style="background-color: cyan;">9.0 Wharves, Berths and Jetties</a>
+            <a href="breakwaters_main.html" style="background-color: magenta;">10.0 Breakwaters</a>
+            <a href="navigational_aids_main.html" style="background-color: lime;">11.0 Navigational Aids</a>
+            <a href="channels_main.html" style="background-color: teal;">12.0 Channels</a>
+            <a href="ict_tangible_main.html" style="background-color: navy;">13.0 ICT Tangible Assets</a>
+            <a href="ict_intangible_main.html" style="background-color: olive;">14.0 ICT Intangible Assets</a>
+            <a href="hr_main.html" style="background-color: maroon;">15.0 Human Resources Management</a>
+            <a href="power_main.html" style="background-color: silver;">16.0 Power</a>
+            <a href="utilities_main.html" style="background-color: gold;">17.0 Utilities</a>
+        </div>
+        <div class="main-content">
+            <h2>Asset Description</h2>
+            <h3>Detailed Summary: Utilities</h3>
+            <h4>Overview</h4>
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:18px;font-family:"Times New Roman",serif;'>17.0 Utilities</span></strong></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Overview</span></strong></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><span style='font-size:16px;font-family:"Times New Roman",serif;'>Utilities include essential services such as water supply, sewage systems, and waste management, supporting the overall functionality and environmental compliance of the port.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Key Components and Functions</span></strong></p>
+<ul type="disc" style="margin-bottom:0cm;">
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Water Supply Systems</span></strong></li>
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Sewage and Wastewater Treatment</span></strong></li>
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Waste Management Systems</span></strong></li>
+</ul>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Life Cycle Costing and Maintenance</span></strong></p>
+<ul type="disc" style="margin-bottom:0cm;">
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Preventive Maintenance</span></strong></li>
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Corrective Maintenance</span></strong></li>
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Condition-Based Maintenance</span></strong></li>
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Lifecycle Cost Analysis</span></strong></li>
+</ul>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Criticality Levels and Risk Management</span></strong></p>
+<ul type="disc" style="margin-bottom:0cm;">
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>High Criticality</span></strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>: Water supply systems, sewage and wastewater treatment.</span></li>
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Medium Criticality</span></strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>: Waste management systems.</span></li>
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Low Criticality</span></strong></li>
+</ul>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Sustainability and Compliance</span></strong></p>
+<ul type="disc" style="margin-bottom:0cm;">
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Environmental Compliance</span></strong></li>
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Sustainability Initiatives</span></strong></li>
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Health and Safety</span></strong></li>
+</ul>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Key Performance Indicators (KPIs)</span></strong></p>
+<ul type="disc" style="margin-bottom:0cm;">
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Availability</span></strong><span style='font-size:16px;font-family:     "Times New Roman",serif;'>: Target 95%</span></li>
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Utilization</span></strong><span style='font-size:16px;font-family:     "Times New Roman",serif;'>: Target 85%</span></li>
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Maintenance Costs</span></strong></li>
+    <li style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;font-size:11.0pt;font-family:"Aptos",sans-serif;line-height:normal;'><strong><span style='font-size:16px;font-family:"Times New Roman",serif;'>Operational Efficiency</span></strong></li>
+</ul>
+            <h4>Conclusion</h4>
+            <p>Utilities are vital to the operations at the Port of EXSTO. Effective management of these assets through regular maintenance, risk management, and sustainability practices ensures operational efficiency, compliance, and long-term value. By understanding the criticality levels and lifecycle costs, the port can make informed decisions to optimize the performance and reliability of its utility assets.</p></div>
+            <div class="sidebar-right">
+                <h2>Subpages</h2>
+                <a href="utilities_description.html" style="background-color: red;">1.1 Asset Description</a>
+                <a href="utilities_asset_hierarchy.html" style="background-color: blue;">1.2 Asset Hierarchy</a>
+                <a href="utilities_risk_analysis.html" style="background-color: green;">1.3 Asset Risk Analysis</a>
+                <a href="utilities_fmea.html" style="background-color: greenyellow;">1.4 Asset FMEA and PMO activities</a>
+                <a href="utilities_strategies.html" style="background-color: purple;">1.5 Asset Strategies</a>
+                <a href="utilities_maintenance_plans.html" style="background-color: orange;">1.6 Asset Maintenance Plans</a>
+                <a href="utilities_whole_of_life_analysis.html" style="background-color: pink;">1.7 Asset WOL Analysis</a>
+                <a href="utilities_event_tables.html" style="background-color: brown;">1.8 Asset Event Scenarios</a>
+                <a href="index.html" style="background-color: gray;">Return to Home Page</a>
+            </div>
+    </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 AM8760 Asset Management Mastery Plus. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showPopup(popupId) {
+            document.getElementById(popupId).style.display = 'block';
+        }
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>

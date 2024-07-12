@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Management Interactive Diagram</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 95%;
+            height: 95vh;
+            margin: 2vh 2.5%;
+            position: relative;
+            overflow: auto; /* Allow scroll */
+            border: 1px solid #000;
+            background-color: #fff;
+        }
+        .wrapper {
+            position: absolute;
+            min-width: 3000px; /* Adjust based on number of blocks */
+            min-height: 2000px; /* Adjust based on number of blocks */
+        }
+        .block {
+            display: inline-block;
+            width: 180px;
+            height: 120px;
+            margin: 10px;
+            padding: 5px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            position: absolute;
+            color: #000;
+            text-align: center;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+            background-color: #f3f3f3; /* Default pastel background */
+        }
+        .block:nth-of-type(odd) { background-color: #fddfdf; }
+        .block:nth-of-type(even) { background-color: #defde0; }
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Ensure SVG is under the blocks */
+        }
+        marker {
+            fill: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <!-- Blocks will be dynamically placed via JavaScript -->
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+                refX="0" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" />
+                </marker>
+            </defs>
+        </svg>
+    </div>
+    <script>
+        const blocks = [
+            "CMMS Master Data Specification", "Asset Hierarchy – Functional Design Specification",
+            "BOD Basis of Design", "Capital replacement Strategy", "Asset Register",
+            "HAZOP & Operational readiness Reviews", "As-Built P&ID", "Risk register", "Benchmark",
+            "Manufacture DOCS & IOM", "PM/CM Conversions", "Site Based Work SHOP & Reverse PMO",
+            "FMEA", "Strategy & Tactics", "Derived Task Interval", "ConMON – Asset Health",
+            "Online", "Availability", "Off-Line", "Corrective", "Weekly", "Labour", "Material",
+            "Services", "Right Sized Organisation -FTE & Seasonal Uplift", "Insurance spares",
+            "Work Management System", "Supply Chain and Warehouse System", "Contractor Management Process",
+            "Financial Management", "SAMP", "AMP", "E2E SD Services Providers",
+            "FRACAS-Failure Report Analysis & Corrective Action System"
+        ];
+
+        const wrapper = document.querySelector('.wrapper');
+        const svg = document.querySelector('svg');
+        const cols = 8; // Number of columns for block layout
+
+        function createBlock(title, index) {
+            const block = document.createElement('div');
+            const color = index % 2 === 0 ? '#fddfdf' : '#defde0'; // Cycle through two colors
+            block.className = 'block';
+            block.style.background = color;
+            block.style.left = `${(index % cols) * 220}px`; // Arrange blocks in a grid
+            block.style.top = `${Math.floor(index / cols) * 140}px`;
+            block.innerHTML = `<h3>More Details</h3><p>${title}</p>`;
+            block.onclick = () => openPopup(title, color);
+            return block;
+        }
+
+        function openPopup(title, color) {
+            const popupFeatures = "location=no,status=no,scrollbars=yes,resizable=yes,width=400,height=300";
+            const popup = window.open("", "_blank", popupFeatures);
+            popup.document.write(`<html><head><title>${title}</title></head><body style="background: ${color}; color: #000;"><h1>${title}</h1><p>Details about ${title} will go here.</p><button onclick='window.close();'>Close</button></body></html>`);
+            popup.document.close();
+        }
+
+        // Generate blocks
+        blocks.forEach((block, index) => {
+            wrapper.appendChild(createBlock(block, index));
+        });
+    </script>
+</body>
+</html>

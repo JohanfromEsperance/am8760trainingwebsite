@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Blocks with Arrows</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .block {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #000;
+            position: relative;
+        }
+        .popup {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            margin-left: 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            background-color: #fff;
+            z-index: 1000;
+            width: 300px;
+        }
+        .block:hover .popup {
+            display: block;
+        }
+        .arrow {
+            display: inline-block;
+            width: 50px;
+            height: 20px;
+            border-top: 2px solid black;
+            border-right: 2px solid black;
+            transform: rotate(45deg);
+            margin-left: -15px;
+            margin-right: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="block">
+        <h2>CMMS Master Data Specification</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>CMMS Master Data Specification Details</h3>
+            <p>Placeholder text for CMMS Master Data Specification.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Asset Hierarchy – Functional Design Specification</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Asset Hierarchy – Functional Design Specification Details</h3>
+            <p>Placeholder text for Asset Hierarchy – Functional Design Specification.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>BOD Basis of Design</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>BOD Basis of Design Details</h3>
+            <p>Placeholder text for BOD Basis of Design.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Capital replacement Strategy</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Capital replacement Strategy Details</h3>
+            <p>Placeholder text for Capital replacement Strategy.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Asset Register</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Asset Register Details</h3>
+            <p>Placeholder text for Asset Register.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>HAZOP & Operational readiness Reviews</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>HAZOP & Operational readiness Reviews Details</h3>
+            <p>Placeholder text for HAZOP & Operational readiness Reviews.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>As-Built P&ID</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>As-Built P&ID Details</h3>
+            <p>Placeholder text for As-Built P&ID.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Risk register</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Risk register Details</h3>
+            <p>Placeholder text for Risk register.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Benchmark</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Benchmark Details</h3>
+            <p>Placeholder text for Benchmark.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Manufacture DOCS & IOM</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Manufacture DOCS & IOM Details</h3>
+            <p>Placeholder text for Manufacture DOCS & IOM.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>PM/CM Conversions</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>PM/CM Conversions Details</h3>
+            <p>Placeholder text for PM/CM Conversions.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Site Based Work SHOP & Reverse PMO</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Site Based Work SHOP & Reverse PMO Details</h3>
+            <p>Placeholder text for Site Based Work SHOP & Reverse PMO.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>FMEA</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>FMEA Details</h3>
+            <p>Placeholder text for FMEA.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Strategy & Tactics</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Strategy & Tactics Details</h3>
+            <p>Placeholder text for Strategy & Tactics.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Derived Task Interval</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Derived Task Interval Details</h3>
+            <p>Placeholder text for Derived Task Interval.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>ConMON – Asset Health</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>ConMON – Asset Health Details</h3>
+            <p>Placeholder text for ConMON – Asset Health.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Online</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Online Details</h3>
+            <p>Placeholder text for Online.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Availability</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Availability Details</h3>
+            <p>Placeholder text for Availability.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Off-Line</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Off-Line Details</h3>
+            <p>Placeholder text for Off-Line.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Corrective</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Corrective Details</h3>
+            <p>Placeholder text for Corrective.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Weekly</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Weekly Details</h3>
+            <p>Placeholder text for Weekly.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Labour</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Labour Details</h3>
+            <p>Placeholder text for Labour.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Material</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Material Details</h3>
+            <p>Placeholder text for Material.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Services</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Services Details</h3>
+            <p>Placeholder text for Services.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Right Sized Organisation -FTE & Seasonal Uplift</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Right Sized Organisation -FTE & Seasonal Uplift Details</h3>
+            <p>Placeholder text for Right Sized Organisation -FTE & Seasonal Uplift.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Insurance spares</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Insurance spares Details</h3>
+            <p>Placeholder text for Insurance spares.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Work Management System</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Work Management System Details</h3>
+            <p>Placeholder text for Work Management System.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Supply Chain and Warehouse System</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Supply Chain and Warehouse System Details</h3>
+            <p>Placeholder text for Supply Chain and Warehouse System.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Contractor Management Process</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Contractor Management Process Details</h3>
+            <p>Placeholder text for Contractor Management Process.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>Financial Management</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>Financial Management Details</h3>
+            <p>Placeholder text for Financial Management.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>SAMP</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>SAMP Details</h3>
+            <p>Placeholder text for SAMP.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>AMP</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>AMP Details</h3>
+            <p>Placeholder text for AMP.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>E2E SD Services Providers</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>E2E SD Services Providers Details</h3>
+            <p>Placeholder text for E2E SD Services Providers.</p>
+        </div>
+    </div>
+    <div class="arrow"></div>
+    <div class="block">
+        <h2>FRACAS-Failure Report Anlaysis & Corrective Action System</h2>
+        <p>Hover over this block to see more information.</p>
+        <div class="popup">
+            <h3>FRACAS-Failure Report Anlaysis & Corrective Action System Details</h3>
+            <p>Placeholder text for FRACAS-Failure Report Anlaysis & Corrective Action System.</p>
+        </div>
+    </div>
+</body>
+</html>

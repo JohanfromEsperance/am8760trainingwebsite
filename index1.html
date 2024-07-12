@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Blocks with Links</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            overflow: hidden;
+            margin: 2%;
+            padding: 2%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        .wrapper {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 60px; /* Ensure there is enough space between blocks for arrows */
+            width: 80%;
+            height: 100%;
+            padding-right: 2%;
+        }
+        .block {
+            width: 100%;
+            height: 70%;
+            border: 2px solid #B2BEB5;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+            color: #000;
+            padding-top: 20%;
+            text-align: center;
+            font-size: 10px;
+            cursor: pointer;
+            background-color: var(--block-color);
+        }
+        .block h2 {
+            font-size: 15px;
+            margin: 0;
+            padding: 0;
+        }
+        .popup-link {
+            text-decoration: none;
+            color: black;
+        }
+        .popup-link:hover {
+            text-decoration: underline;
+        }
+        .arrow {
+            position: absolute;
+            color: black;
+        }
+        .right {
+            right: -45px; /* Adjust for spacing */
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 45px;
+        }
+        .left {
+            left: -45px; /* Adjust for spacing */
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 45px;
+        }
+        .up {
+            top: -55px; /* Adjust for spacing */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 48px;
+        }
+        .down {
+            bottom: -42px; /* Adjust for spacing */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 48px;
+        }
+
+        /* Popup Styles */
+        .popup {
+            position: fixed;
+            top: 20%;
+            left: 25%;
+            width: 50%;
+            height: 70vh;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            overflow: auto;
+            resize: both;
+        }
+        .popup .content {
+            padding: 20px;
+            height: calc(100% - 40px);
+        }
+        .popup .close-btn, .popup .prev-btn, .popup .next-btn {
+            position: absolute;
+            top: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #ffcccb;
+            border: 1px solid #000;
+            border-radius: 5px;
+            z-index: 10;
+        }
+        .popup .close-btn {
+            right: 10px;
+        }
+        .popup .prev-btn {
+            left: 10px;
+        }
+        .popup .next-btn {
+            right: 80px;
+        }
+
+        .block:nth-child(1) { --block-color: #ffb3ba; }
+        .block:nth-child(2) { --block-color: #ffdfba; }
+        .block:nth-child(3) { --block-color: #ffffba; }
+        .block:nth-child(4) { --block-color: #baffc9; }
+        .block:nth-child(5) { --block-color: #bae1ff; }
+        .block:nth-child(6) { --block-color: #d9b3ff; }
+        .block:nth-child(7) { --block-color: #ffb3ba; }
+        .block:nth-child(8) { --block-color: #ffdfba; }
+        .block:nth-child(9) { --block-color: #ffffba; }
+        .block:nth-child(10) { --block-color: #baffc9; }
+        .block:nth-child(11) { --block-color: #bae1ff; }
+        .block:nth-child(12) { --block-color: #d9b3ff; }
+        .block:nth-child(13) { --block-color: #ffb3ba; }
+        .block:nth-child(14) { --block-color: #ffdfba; }
+        .block:nth-child(15) { --block-color: #ffffba; }
+        .block:nth-child(16) { --block-color: #baffc9; }
+        .block:nth-child(17) { --block-color: #bae1ff; }
+        .block:nth-child(18) { --block-color: #d9b3ff; }
+        .block:nth-child(19) { --block-color: #ffb3ba; }
+        .block:nth-child(20) { --block-color: #ffdfba; }
+        .block:nth-child(21) { --block-color: #ffffba; }
+        .block:nth-child(22) { --block-color: #baffc9; }
+        .block:nth-child(23) { --block-color: #bae1ff; }
+        .block:nth-child(24) { --block-color: #d9b3ff; }
+        .block:nth-child(25) { --block-color: #ffb3ba; }
+        .block:nth-child(26) { --block-color: #ffdfba; }
+        .block:nth-child(27) { --block-color: #ffffba; }
+        .block:nth-child(28) { --block-color: #baffc9; }
+        .block:nth-child(29) { --block-color: #bae1ff; }
+        .block:nth-child(30) { --block-color: #d9b3ff; }
+        .block:nth-child(31) { --block-color: #ffb3ba; }
+        .block:nth-child(32) { --block-color: #ffdfba; }
+        .block:nth-child(33) { --block-color: #ffffba; }
+        .block:nth-child(34) { --block-color: #baffc9; }
+        .block:nth-child(35) { --block-color: #bae1ff; }
+
+        .sidebar {
+            width: 10%;
+            height: 100%;
+            background-color: grey;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .sidebar button {
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            color: black;
+        }
+        .sidebar button:nth-child(1) { background-color: #ffb3ba; }
+        .sidebar button:nth-child(2) { background-color: #ffdfba; }
+        .sidebar button:nth-child(3) { background-color: #ffffba; }
+        .sidebar button:nth-child(4) { background-color: #baffc9; }
+        .sidebar button:nth-child(5) { background-color: #bae1ff; }
+        .sidebar button:nth-child(6) { background-color: #d9b3ff; }
+        .sidebar button:nth-child(7) { background-color: #ffb3ba; }
+        .sidebar button:nth-child(8) { background-color: #ffdfba; }
+        .sidebar button:nth-child(9) { background-color: #ffffba; }
+        .sidebar button:nth-child(10) { background-color: #baffc9; }
+        .sidebar button:nth-child(11) { background-color: #bae1ff; }
+        .sidebar button:nth-child(12) { background-color: #d9b3ff; }
+        .sidebar button:nth-child(13) { background-color: #ffb3ba; }
+        .sidebar button:nth-child(14) { background-color: #ffdfba; }
+        .sidebar button:nth-child(15) { background-color: #ffffba; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="block" onclick="openPopup('samp.html', '#ffb3ba')">
+            <h2>SAMP</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('cmms_master_data_specification.html', '#ffb3ba')">
+            <h2>CMMS Master Data Specification</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('asset_hierarchy_functional_design_specification.html', '#ffdfba')">
+            <h2>Asset Hierarchy – Functional Design Specification</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('bod_basis_of_design.html', '#ffffba')">
+            <h2>BOD Basis of Design</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('capital_replacement_strategy.html', '#baffc9')">
+            <h2>Capital replacement Strategy</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('asset_register.html', '#bae1ff')">
+            <h2>Asset Register</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('hazop_operational_readiness_reviews.html', '#d9b3ff')">
+            <h2>HAZOP & Operational readiness Reviews</h2>
+            <p>See details</p>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('as_built_pid.html', '#ffb3ba')">
+            <h2>As-Built P&ID</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('riskregister.html', '#ffdfba')">
+            <h2>Risk register</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('benchmark.html', '#ffffba')">
+            <h2>Benchmark</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('manufacture_docs_iom.html', '#baffc9')">
+            <h2>Manufacture DOCS & IOM</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('pm_cm_conversions.html', '#bae1ff')">
+            <h2>PM/CM Conversions</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('site_based_work_shop_reverse_pmo.html', '#d9b3ff')">
+            <h2>Site Based Work SHOP & Reverse PMO</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('fmea.html', '#ffb3ba')">
+            <h2>FMEA</h2>
+            <p>See details</p>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('strategy_tactics.html', '#ffdfba')">
+            <h2>Strategy & Tactics</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('derived_task_interval.html', '#ffffba')">
+            <h2>Derived Task Interval</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('conmon_asset_health.html', '#baffc9')">
+            <h2>ConMON – Asset Health</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('online.html', '#bae1ff')">
+            <h2>Online</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('availability.html', '#d9b3ff')">
+            <h2>Availability</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('off_line.html', '#ffb3ba')">
+            <h2>Off-Line</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('corrective.html', '#ffdfba')">
+            <h2>Corrective</h2>
+            <p>See details</p>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('weekly.html', '#ffffba')">
+            <h2>Weekly</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('labour.html', '#baffc9')">
+            <h2>Labour</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('services.html', '#d9b3ff')">
+            <h2>Services</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('material.html', '#d9b3ff')">
+            <h2>Material Management</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('right_sized_organisation.html', '#ffb3ba')">
+            <h2>Right Sized Organisation -FTE & Seasonal Uplift</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('insurance_spares.html', '#ffdfba')">
+            <h2>Insurance spares</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('work_management_system.html', '#ffffba')">
+            <h2>Work Management System</h2>
+            <p>See details</p>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+            <div class="arrow down">&uarr;</div>
+        </div>
+        <div class="block" onclick="openPopup('supply_chain_warehouse_system.html', '#baffc9')">
+            <h2>Supply Chain and Warehouse System</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow up">&darr;</div>
+        </div>
+        <div class="block" onclick="openPopup('contractor_management_process.html', '#bae1ff')">
+            <h2>Contractor Management Process</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+        </div>
+        <div class="block" onclick="openPopup('e2e_sd_services_providers.html', '#ffffba')">
+            <h2>E2E SD Services Providers</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+        </div>
+        <div class="block" onclick="openPopup('fracas_failure_report_analysis.html', '#baffc9')">
+            <h2>FRACAS-Failure Report Anlaysis & Corrective Action System</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+        </div>
+        <div class="block" onclick="openPopup('amp.html', '#ffdfba')">
+            <h2>AMP</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+        </div>
+        <div class="block" onclick="openPopup('financial_management.html', '#d9b3ff')">
+            <h2>Financial Management</h2>
+            <p>See details</p>
+            <div class="arrow right">&larr;</div>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+        </div>
+        <div class="block" onclick="openPopup('RASCI.html', '#bae1ff')">
+            <h2>RASCI -Who does WHAT</h2>
+            <p>See details</p>
+            <div class="arrow left">&rarr;</div>
+            <div class="arrow up">&darr;</div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <button onclick="openDefinitionPopup('Maintenance Plans', '#ffb3ba')">Maintenance Plans</button>
+        <button onclick="openDefinitionPopup('Maintenance Instructions', '#ffdfba')">Maintenance Instructions</button>
+        <button onclick="openDefinitionPopup('Maintenance TASK Lists', '#ffffba')">Maintenance TASK Lists</button>
+        <button onclick="openDefinitionPopup('Reliability-Centered Maintenance (RCM)', '#baffc9')">Reliability-Centered Maintenance (RCM)</button>
+        <button onclick="openDefinitionPopup('CBM (Condition-Based Maintenance)', '#bae1ff')">CBM (Condition-Based Maintenance)</button>
+        <button onclick="openDefinitionPopup('Operator Driven Reliability', '#d9b3ff')">Operator Driven Reliability</button>
+        <button onclick="openDefinitionPopup('Integrity Management', '#ffb3ba')">Integrity Management</button>
+        <button onclick="openDefinitionPopup('Risk-Based Inspections', '#ffdfba')">Risk-Based Inspections</button>
+        <button onclick="openDefinitionPopup('Corrective Maintenance', '#ffffba')">Corrective Maintenance</button>
+        <button onclick="openDefinitionPopup('Planned Maintenance', '#baffc9')">Planned Maintenance</button>
+        <button onclick="openDefinitionPopup('Preventative Maintenance', '#bae1ff')">Preventative Maintenance</button>
+        <button onclick="openDefinitionPopup('Technology-Driven Healing', '#d9b3ff')">Technology-Driven Healing</button>
+        <button onclick="openDefinitionPopup('Asset Design and Selection', '#ffb3ba')">Asset Design and Selection</button>
+        <button onclick="openDefinitionPopup('FMEA (Failure Modes and Effects Analysis)', '#ffdfba')">FMEA (Failure Modes and Effects Analysis)</button>
+        <button onclick="openDefinitionPopup('Asset Register', '#ffffba')">Asset Register</button>
+    </div>
+    <div id="popupContainer"></div>
+
+    <script>
+        function openPopup(url, color) {
+            const popupContainer = document.getElementById('popupContainer');
+            const popup = document.createElement('div');
+            popup.classList.add('popup');
+            popup.style.backgroundColor = color;
+
+            popup.innerHTML = `
+                <div class="content">
+                    <div class="close-btn" onclick="closePopup()">X</div>
+                    <iframe src="${url}" style="width: 100%; height: calc(100% - 40px); border: none;"></iframe>
+                </div>
+            `;
+            popupContainer.appendChild(popup);
+
+            let isDragging = false;
+            let offsetX, offsetY;
+
+            popup.addEventListener('mousedown', function (e) {
+                isDragging = true;
+                offsetX = e.clientX - popup.getBoundingClientRect().left;
+                offsetY = e.clientY - popup.getBoundingClientRect().top;
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+            });
+
+            function onMouseMove(e) {
+                if (isDragging) {
+                    popup.style.left = e.clientX - offsetX + 'px';
+                    popup.style.top = e.clientY - offsetY + 'px';
+                }
+            }
+
+            function onMouseUp() {
+                isDragging = false;
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+            }
+        }
+
+        function closePopup() {
+            const popupContainer = document.getElementById('popupContainer');
+            popupContainer.innerHTML = '';
+        }
+
+        function openDefinitionPopup(title, color) {
+            const definitions = {
+                "Maintenance Plans": "Details about Maintenance Plans...",
+                "Maintenance Instructions": "Details about Maintenance Instructions...",
+                "Maintenance TASK Lists": "Details about Maintenance TASK Lists...",
+                "Reliability-Centered Maintenance (RCM)": "Details about Reliability-Centered Maintenance (RCM)...",
+                "CBM (Condition-Based Maintenance)": "Details about CBM (Condition-Based Maintenance)...",
+                "Operator Driven Reliability": "Details about Operator Driven Reliability...",
+                "Integrity Management": "Details about Integrity Management...",
+                "Risk-Based Inspections": "Details about Risk-Based Inspections...",
+                "Corrective Maintenance": "Details about Corrective Maintenance...",
+                "Planned Maintenance": "Details about Planned Maintenance...",
+                "Preventative Maintenance": "Details about Preventative Maintenance...",
+                "Technology-Driven Healing": "Details about Technology-Driven Healing...",
+                "Asset Design and Selection": "Details about Asset Design and Selection...",
+                "FMEA (Failure Modes and Effects Analysis)": "Details about FMEA (Failure Modes and Effects Analysis)...",
+                "Asset Register": "Details about Asset Register..."
+            };
+
+            const popupContainer = document.getElementById('popupContainer');
+            const popup = document.createElement('div');
+            popup.classList.add('popup');
+            popup.style.backgroundColor = color;
+
+            popup.innerHTML = `
+                <div class="content">
+                    <div class="close-btn" onclick="closePopup()">X</div>
+                    <h1>${title}</h1>
+                    <p>${definitions[title]}</p>
+                </div>
+            `;
+            popupContainer.appendChild(popup);
+
+            let isDragging = false;
+            let offsetX, offsetY;
+
+            popup.addEventListener('mousedown', function (e) {
+                isDragging = true;
+                offsetX = e.clientX - popup.getBoundingClientRect().left;
+                offsetY = e.clientY - popup.getBoundingClientRect().top;
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+            });
+
+            function onMouseMove(e) {
+                if (isDragging) {
+                    popup.style.left = e.clientX - offsetX + 'px';
+                    popup.style.top = e.clientY - offsetY + 'px';
+                }
+            }
+
+            function onMouseUp() {
+                isDragging = false;
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const blocks = document.querySelectorAll('.block');
+            blocks.forEach((block, index) => {
+                const row = Math.floor(index / 7);
+                const col = index % 7;
+
+                const hasRight = col < 6;
+                const hasLeft = col > 0;
+                const hasUp = row > 0;
+                const hasDown = row < 4;
+
+                if (hasRight) {
+                    const arrowRight = block.querySelector('.right');
+                    arrowRight.style.display = 'inline';
+                }
+                if (hasLeft) {
+                    const arrowLeft = block.querySelector('.left');
+                    arrowLeft.style.display = 'inline';
+                }
+                if (hasUp) {
+                    const arrowUp = block.querySelector('.up');
+                    arrowUp.style.display = 'inline';
+                }
+                if (hasDown) {
+                    const arrowDown = block.querySelector('.down');
+                    arrowDown.style.display = 'inline';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

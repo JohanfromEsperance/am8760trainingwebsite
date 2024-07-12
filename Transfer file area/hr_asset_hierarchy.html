@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM8760 - Asset Management</title>
+    <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            header {
+                height: 11%;
+                width: 100%;
+                text-align: center;
+                background-color: #ADD8E6;
+                color: white;
+                padding: 10px 0;
+                position: relative;
+                box-sizing: border-box;
+            }
+            .logo {
+                height: 100%;
+                width: 10%;
+                position: absolute;
+                top: 0;
+            }
+            .left-logo {
+                left: 0;
+            }
+            .right-logo {
+                right: 0;
+            }
+            nav {
+                background-color: #339;
+                overflow: hidden;
+                width: 100%;
+                display: flex;
+                justify-content: space-evenly;
+                box-sizing: border-box;
+            }
+            nav a {
+                display: block;
+                color: white;
+                text-align: left;
+                padding: 14px 16px;
+                text-decoration: none;
+                flex: 1;
+            }
+            nav a:hover {
+                background-color: #dde;
+                color: black;
+            }
+            .container {
+                display: flex;
+                flex: 1;
+                flex-wrap: nowrap;
+                height: 60vh;
+                box-sizing: border-box;
+            }
+            .sidebar-left, .sidebar-right {
+                width: 20%;
+                background-color: #ADD;
+                padding: 10px;
+                box-sizing: border-box;
+                color: white;
+                font-size: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                overflow-y: auto; /* Added to enable scrolling */
+                overflow-x: auto; /* Added to enable scrolling */
+            }
+            .sidebar-left a, .sidebar-right a {
+                padding: 10px;
+                display: block;
+                color: white;
+                text-decoration: none;
+                margin-bottom: 10px;
+                border-radius: 4px;
+                text-align: left;
+    
+            }
+            .sidebar-left a:hover, .sidebar-right a:hover {
+                background-color: #45a049;
+            }
+            .main-content {
+                width: 60%;
+                padding: 30px;
+                box-sizing: border-box;
+                background-color: white;
+                overflow-y: auto; /* Added to enable scrolling */
+                overflow-x: auto; /* Added to enable scrolling */
+            }
+            .popup {
+                display: none;
+                position: fixed;
+                left: 25%;
+                top: 25%;
+                width: 50%;
+                padding: 20px;
+                background-color: white;
+                border: 1px solid #333;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+            }
+            .popup h2 {
+                margin-top: 0;
+            }
+            .popup .close {
+                display: block;
+                text-align: right;
+                margin-top: -10px;
+                margin-right: -10px;
+            }
+            .popup .close a {
+                color: #ADD8E6;
+                text-decoration: none;
+                font-size: 24px;
+            }
+            footer {
+                height: 5%;
+                width: 100%;
+                text-align: center;
+                background-color: #ADD8E6;
+                color: white;
+                padding: 10px 0;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+<body>
+    <header>
+        <img src="logo with no xSTO.png" class="logo left-logo" alt="Left Logo">
+        Human Resources Management- AM8760
+        <h2 style="font-size: 2rem; color:#d2a993">Human Resources Management - Structures</h2>
+        <img src="logo with no xSTO.png" class="logo right-logo" alt="Right Logo">
+    </header>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="vision.html">Vision</a>
+        <a href="key_performance_indicators.html">Key Performance Indicators</a>
+        <a href="financial_report.html">Financial Report</a>
+        <a href="stateoftheasset.html">State of the Asset Table</a>
+        <a href="risk.html">5x5 Risk Table</a>
+        <a href="capital_investment_decision.html">Capital Investment Decision</a>
+        <a href="training.html">TRAINING</a>
+        <a href="knowledge_test.html">GFMAM Knowledge Test</a>
+        <a href="knowledge_test_ISO.html">IOS55001 Knowledge Test</a>
+    </nav>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2 style="font-size: rem; color:#d2a993">Quick Links</h2>
+            <a href="bulk_material_handling_main.html" style="background-color: red;">1.0 Bulk Material Handling</a>
+            <a href="storage_sheds_main.html" style="background-color: blue;">2.0 Storage Sheds</a>
+            <a href="rail_infrastructure_main.html" style="background-color: green;">3.0 Rail Infrastructure</a>
+            <a href="ship_loader_unloader_main.html" style="background-color: grey;">4.0 Ship Loader/Unloader</a>
+            <a href="dust_suppression_main.html" style="background-color: purple;">5.0 Dust Suppression Systems</a>
+            <a href="weighbridges_main.html" style="background-color: orange;">6.0 Weighbridges</a>
+            <a href="security_systems_main.html" style="background-color: pink;">7.0 Security Systems</a>
+            <a href="spare.html" style="background-color: brown;">8.0 SPARE</a>
+            <a href="wharves_main.html" style="background-color: cyan;">9.0 Wharves, Berths and Jetties</a>
+            <a href="breakwaters_main.html" style="background-color: magenta;">10.0 Breakwaters</a>
+            <a href="navigational_aids_main.html" style="background-color: lime;">11.0 Navigational Aids</a>
+            <a href="channels_main.html" style="background-color: teal;">12.0 Channels</a>
+            <a href="ict_tangible_main.html" style="background-color: navy;">13.0 ICT Tangible Assets</a>
+            <a href="ict_intangible_main.html" style="background-color: olive;">14.0 ICT Intangible Assets</a>
+            <a href="hr_main.html" style="background-color: maroon;">15.0 Human Resources Management</a>
+            <a href="power_main.html" style="background-color: silver;">16.0 Power</a>
+            <a href="utilities_main.html" style="background-color: gold;">17.0 Utilities</a>
+        </div>
+        <div class="main-content">
+            <table dir="ltr" border="1" cellspacing="0" cellpadding="0" data-sheets-root="1"><colgroup><col width="200" /><col width="400" /><col width="400" /></colgroup>
+                <tbody>
+                <tr>
+                <td colspan="3" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Organization Diagram for Port of Exsto&quot;}">Organization Diagram for Port of Exsto</td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Division&quot;}">Division</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Role&quot;}">Role</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Responsibilities&quot;}">
+                <div>
+                <div>Responsibilities</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Executive Management&quot;}">Executive Management</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;CEO&quot;}">CEO</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Overall strategic direction and leadership&quot;}">
+                <div>
+                <div>Overall strategic direction and leadership</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;COO&quot;}">COO</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Operational management and oversight&quot;}">
+                <div>
+                <div>Operational management and oversight</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;CFO&quot;}">CFO</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Financial planning, risk management, and reporting&quot;}">
+                <div>
+                <div>Financial planning, risk management, and reporting</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;CIO&quot;}">CIO</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Information technology and digital strategy&quot;}">
+                <div>
+                <div>Information technology and digital strategy</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;CHRO&quot;}">CHRO</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Human resources and organizational development&quot;}">
+                <div>
+                <div>Human resources and organizational development</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Operations&quot;}">Operations</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Operations Manager&quot;}">Operations Manager</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Port operations, logistics, and supply chain management&quot;}">
+                <div>
+                <div>Port operations, logistics, and supply chain management</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Terminal Manager&quot;}">Terminal Manager</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Management of terminal operations and efficiency&quot;}">
+                <div>
+                <div>Management of terminal operations and efficiency</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Maintenance Manager&quot;}">Maintenance Manager</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Maintenance of port facilities and equipment&quot;}">
+                <div>
+                <div>Maintenance of port facilities and equipment</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Security Manager&quot;}">Security Manager</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Port security and safety&quot;}">
+                <div>
+                <div>Port security and safety</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Environmental Manager&quot;}">Environmental Manager</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Environmental compliance and sustainability&quot;}">
+                <div>
+                <div>Environmental compliance and sustainability</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Finance&quot;}">Finance</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Finance Manager&quot;}">Finance Manager</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Financial operations, budgeting, and reporting&quot;}">
+                <div>
+                <div>Financial operations, budgeting, and reporting</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Accounts Payable Clerk&quot;}">Accounts Payable Clerk</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Managing accounts payable processes&quot;}">
+                <div>
+                <div>Managing accounts payable processes</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Accounts Receivable Clerk&quot;}">Accounts Receivable Clerk</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Managing accounts receivable processes&quot;}">
+                <div>
+                <div>Managing accounts receivable processes</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Payroll Specialist&quot;}">Payroll Specialist</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Processing payroll and employee compensation&quot;}">
+                <div>
+                <div>Processing payroll and employee compensation</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Financial Analyst&quot;}">Financial Analyst</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Financial analysis and reporting&quot;}">
+                <div>
+                <div>Financial analysis and reporting</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Information Technology&quot;}">Information Technology</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;IT Manager&quot;}">IT Manager</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;IT infrastructure and systems management&quot;}">
+                <div>
+                <div>IT infrastructure and systems management</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Network Administrator&quot;}">Network Administrator</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Network maintenance and security&quot;}">
+                <div>
+                <div>Network maintenance and security</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Systems Analyst&quot;}">Systems Analyst</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Systems development and integration&quot;}">
+                <div>
+                <div>Systems development and integration</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Help Desk Support&quot;}">Help Desk Support</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;IT support and troubleshooting&quot;}">
+                <div>
+                <div>IT support and troubleshooting</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Cybersecurity Specialist&quot;}">Cybersecurity Specialist</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Information security and risk management&quot;}">
+                <div>
+                <div>Information security and risk management</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Human Resources&quot;}">Human Resources</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;HR Manager&quot;}">HR Manager</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;HR strategy and policy development&quot;}">
+                <div>
+                <div>HR strategy and policy development</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Recruitment Specialist&quot;}">Recruitment Specialist</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Hiring and onboarding new employees&quot;}">
+                <div>
+                <div>Hiring and onboarding new employees</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Training and Development Coordinator&quot;}">Training and Development Coordinator</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Employee training and professional development&quot;}">
+                <div>
+                <div>Employee training and professional development</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Employee Relations Specialist&quot;}">Employee Relations Specialist</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Managing employee relations and engagement&quot;}">
+                <div>
+                <div>Managing employee relations and engagement</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Compliance Officer&quot;}">Compliance Officer</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Ensuring compliance with labor laws and regulations&quot;}">
+                <div>
+                <div>Ensuring compliance with labor laws and regulations</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Commercial&quot;}">Commercial</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Commercial Manager&quot;}">Commercial Manager</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Commercial strategy and customer relations&quot;}">
+                <div>
+                <div>Commercial strategy and customer relations</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Marketing Specialist&quot;}">Marketing Specialist</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Marketing and promotional activities&quot;}">
+                <div>
+                <div>Marketing and promotional activities</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Sales Representative&quot;}">Sales Representative</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Customer acquisition and sales&quot;}">
+                <div>
+                <div>Customer acquisition and sales</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Customer Service Representative&quot;}">Customer Service Representative</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Customer support and service management&quot;}">
+                <div>
+                <div>Customer support and service management</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Contracts Administrator&quot;}">Contracts Administrator</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Managing contracts and agreements&quot;}">
+                <div>
+                <div>Managing contracts and agreements</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Engineering&quot;}">Engineering</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Engineering Manager&quot;}">Engineering Manager</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Engineering projects and technical services&quot;}">
+                <div>
+                <div>Engineering projects and technical services</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Project Engineer&quot;}">Project Engineer</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Project planning and execution&quot;}">
+                <div>
+                <div>Project planning and execution</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Maintenance Engineer&quot;}">Maintenance Engineer</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Maintenance planning and management&quot;}">
+                <div>
+                <div>Maintenance planning and management</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Civil Engineer&quot;}">Civil Engineer</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Civil engineering and infrastructure development&quot;}">
+                <div>
+                <div>Civil engineering and infrastructure development</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Electrical Engineer&quot;}">Electrical Engineer</td>
+                <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Electrical systems and equipment maintenance&quot;}">
+                <div>
+                <div>Electrical systems and equipment maintenance</div>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td colspan="3" rowspan="2" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;This table provides a summary of the organizational structure of the Port of Exsto, detailing the main divisions and the key roles within each division along with their primary responsibilities. This structured approach ensures clarity in the roles and responsibilities across the organization, facilitating effective management and coordination.&quot;}">
+                <div>This table provides a summary of the organizational structure of the Port of Exsto, detailing the main divisions and the key roles within each division along with their primary responsibilities. This structured approach ensures clarity in the roles and responsibilities across the organization, facilitating effective management and coordination.</div>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+        </div>
+        <div class="sidebar-right">
+            <h2>Subpages</h2>
+            <a href="hr_description.html" style="background-color: red;">1.1 Asset Description</a>
+            <a href="hr_asset_hierarchy.html" style="background-color: blue;">1.2 Asset Hierarchy</a>
+            <a href="hr_risk_analysis.html" style="background-color: green;">1.3 Asset Risk Analysis</a>
+            <a href="hr_fmea.html" style="background-color: blueviolet;">1.4 Asset FMEA and PMO activities</a>
+            <a href="hr_strategies.html" style="background-color: purple;">1.5 Asset Strategies</a>
+            <a href="hr_maintenance_plans.html" style="background-color: orange;">1.6 Asset Maintenance Plans</a>
+            <a href="hr_whole_of_life_analysis.html" style="background-color: pink;">1.7 Asset WOL Analysis</a>
+            <a href="hr_event_tables.html" style="background-color: brown;">1.8 Asset Event Scenarios</a>
+            <a href="index.html" style="background-color: gray;">Return to Home Page</a>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; ExSTO Global, Johan Snyman - The Auathor retains all moral rights. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showPopup(popupId) {
+            document.getElementById(popupId).style.display = 'block';
+        }
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>

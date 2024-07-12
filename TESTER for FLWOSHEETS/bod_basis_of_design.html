@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOD (Basis of Design)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scroll on body */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 100%;
+            height: 70vh;
+            padding-top: 70px; /* Padding to avoid button interference */
+            background-color: #32cd32; /* Matching the block color */
+            border: 2px solid #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            cursor: move;
+        }
+        .content {
+            padding: 20px;
+            overflow: auto;
+            height: calc(100% - 40px);
+            background-color: #f5f5dc;
+        }
+        .prev-btn, .next-btn {
+            position: absolute;
+            top: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #ffcccb;
+            border: 1px solid #000;
+            border-radius: 5px;
+            z-index: 10;
+        }
+        .prev-btn {
+            left: 10px;
+        }
+        .next-btn {
+            right: 80px;
+        }
+    </style>
+    <script>
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        function closePopup() {
+            const popup = document.querySelector('.container');
+            document.body.removeChild(popup);
+        }
+
+        function onMouseDown(e) {
+            isDragging = true;
+            offsetX = e.clientX - parseInt(window.getComputedStyle(popup).left);
+            offsetY = e.clientY - parseInt(window.getComputedStyle(popup).top);
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        }
+
+        function onMouseMove(e) {
+            if (isDragging) {
+                popup.style.left = e.clientX - offsetX + 'px';
+                popup.style.top = e.clientY - offsetY + 'px';
+            }
+        }
+
+        function onMouseUp() {
+            isDragging = false;
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        }
+
+        window.onload = function() {
+            const popup = document.querySelector('.container');
+            popup.addEventListener('mousedown', onMouseDown);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="close-btn" onclick="closePopup()">X</div>
+            <div class="prev-btn"><a href="previous_page.html">Previous</a></div>
+            <div class="next-btn"><a href="next_page.html">Next</a></div>
+            <h3>BOD (Basis of Design) Details</h3>
+            <p><strong>Who:</strong> Design engineers, project managers</p>
+            <p><strong>What:</strong> Document that outlines the fundamental criteria and assumptions for the design of assets</p>
+            <p><strong>When:</strong> During the initial design phase</p>
+            <p><strong>Where:</strong> Design and planning departments</p>
+            <p><strong>With:</strong> Design documents, engineering standards</p>
+            <p><strong>How:</strong> By compiling all design criteria, assumptions, and requirements into a comprehensive document</p>
+            <p><strong>Why:</strong> To ensure all design aspects are clearly defined and agreed upon</p>
+            <p><strong>Quality Check:</strong></p>
+            <ul>
+                <li>Right person (engineers, managers)</li>
+                <li>Right time (initial design phase)</li>
+                <li>Right place (design departments)</li>
+                <li>Right equipment (documents, standards)</li>
+                <li>Right process (compiling criteria)</li>
+                <li>Right work (clear definitions)</li>
+                <li>Right reason (agreed design aspects)</li>
+            </ul>
+            <p><strong>Expanded Activities:</strong></p>
+            <ul>
+                <li>Define design criteria and assumptions for port assets.</li>
+                <li>Compile engineering standards and requirements.</li>
+                <li>Document all design parameters in a comprehensive BOD document.</li>
+                <li>Review and approve the BOD document with all relevant stakeholders.</li>
+                <li>Periodically review and update the BOD to reflect any changes in design criteria or assumptions.</li>
+            </ul>
+            <p><strong>Research and Benchmarking:</strong></p>
+            <ul>
+                <li><strong>Best Practices:</strong> Utilize guidelines from engineering design standards.</li>
+                <li><strong>Case Studies:</strong> Review BOD documents from other major projects to identify effective practices.</li>
+                <li><strong>Benchmark Data:</strong> Compare your BOD criteria with industry standards to ensure completeness and accuracy.</li>
+            </ul>
+            <p><strong>Narrative:</strong> This block involves creating the Basis of Design (BOD) document that outlines all the fundamental criteria, assumptions, and requirements for the design of port assets. This ensures that all stakeholders have a clear understanding of the design parameters and that the design process is aligned with operational goals.</p>
+        </div>
+    </div>
+</body>
+</html>

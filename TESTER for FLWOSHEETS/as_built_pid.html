@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>As-Built P&ID</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scroll on body */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 100%;
+            height: 70vh;
+            padding-top: 70px; /* Padding to avoid button interference */
+            background-color: #32cd32; /* Matching the block color */
+            border: 2px solid #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            cursor: move;
+        }
+        .content {
+            padding: 20px;
+            overflow: auto;
+            height: calc(100% - 40px);
+            background-color: #f5f5dc;
+        }
+        .prev-btn, .next-btn {
+            position: absolute;
+            top: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #ffcccb;
+            border: 1px solid #000;
+            border-radius: 5px;
+            z-index: 10;
+        }
+        .prev-btn {
+            left: 10px;
+        }
+        .next-btn {
+            right: 80px;
+        }
+    </style>
+    <script>
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        function closePopup() {
+            const popup = document.querySelector('.container');
+            document.body.removeChild(popup);
+        }
+
+        function onMouseDown(e) {
+            isDragging = true;
+            offsetX = e.clientX - parseInt(window.getComputedStyle(popup).left);
+            offsetY = e.clientY - parseInt(window.getComputedStyle(popup).top);
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        }
+
+        function onMouseMove(e) {
+            if (isDragging) {
+                popup.style.left = e.clientX - offsetX + 'px';
+                popup.style.top = e.clientY - offsetY + 'px';
+            }
+        }
+
+        function onMouseUp() {
+            isDragging = false;
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        }
+
+        window.onload = function() {
+            const popup = document.querySelector('.container');
+            popup.addEventListener('mousedown', onMouseDown);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="close-btn" onclick="closePopup()">X</div>
+            <div class="prev-btn"><a href="previous_page.html">Previous</a></div>
+            <div class="next-btn"><a href="next_page.html">Next</a></div>
+            <h3>As-Built P&ID Details</h3>
+            <p><strong>Who:</strong> Design engineers, project managers</p>
+            <p><strong>What:</strong> As-built Piping and Instrumentation Diagrams (P&ID) that reflect the actual construction of assets</p>
+            <p><strong>When:</strong> During and after the construction phase</p>
+            <p><strong>Where:</strong> Design and engineering departments</p>
+            <p><strong>With:</strong> CAD software, engineering documentation</p>
+            <p><strong>How:</strong> By updating P&ID to reflect any changes made during construction</p>
+            <p><strong>Why:</strong> To ensure accurate documentation of the constructed assets</p>
+            <p><strong>Quality Check:</strong></p>
+            <ul>
+                <li>Right person (engineers, managers)</li>
+                <li>Right time (during, after construction)</li>
+                <li>Right place (design, engineering departments)</li>
+                <li>Right equipment (CAD software, documentation)</li>
+                <li>Right process (updating P&ID)</li>
+                <li>Right work (accurate documentation)</li>
+                <li>Right reason (reflect actual construction)</li>
+            </ul>
+            <p><strong>Expanded Activities:</strong></p>
+            <ul>
+                <li>Update P&ID to reflect any changes made during the construction of port assets.</li>
+                <li>Verify the accuracy of as-built P&ID.</li>
+                <li>Document and archive the as-built P&ID for future reference.</li>
+                <li>Conduct periodic reviews to ensure P&ID remains accurate and up-to-date.</li>
+            </ul>
+            <p><strong>Research and Benchmarking:</strong></p>
+            <ul>
+                <li><strong>Best Practices:</strong> Follow guidelines from the American Society of Mechanical Engineers (ASME) for P&ID.</li>
+                <li><strong>Case Studies:</strong> Review as-built P&ID processes from other ports to understand best practices.</li>
+                <li><strong>Benchmark Data:</strong> Compare your P&ID documentation with industry standards to ensure accuracy and completeness.</li>
+            </ul>
+            <p><strong>Narrative:</strong> This block involves creating and maintaining as-built Piping and Instrumentation Diagrams (P&ID) that accurately reflect the construction of port assets. This ensures that any changes made during construction are documented and that the P&ID accurately represents the constructed assets.</p>
+        </div>
+    </div>
+</body>
+</html>

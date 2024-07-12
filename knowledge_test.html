@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM8760 - ISO55000 Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            height: 11%;
+            width: 100%;
+            text-align: center;
+            background-color: #ADD8E6;
+            color: white;
+            padding: 10px 0;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .logo {
+            height: 100%;
+            width: 10%;
+            position: absolute;
+            top: 0;
+        }
+        .left-logo {
+            left: 0;
+        }
+        .right-logo {
+            right: 0;
+        }
+        nav {
+            background-color: #339;
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            box-sizing: border-box;
+        }
+        nav a {
+            display: block;
+            color: white;
+            text-align: left;
+            padding: 14px 16px;
+            text-decoration: none;
+            flex: 1;
+        }
+        nav a:hover {
+            background-color: #dde;
+            color: black;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            flex-wrap: nowrap;
+            height: 60vh;
+            box-sizing: border-box;
+        }
+        .sidebar-left, .sidebar-right {
+            width: 20%;
+            background-color: #ADD;
+            padding: 10px;
+            box-sizing: border-box;
+            color: white;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            overflow-y: auto; /* Added to enable scrolling */
+            overflow-x: auto; /* Added to enable scrolling */
+        }
+        .sidebar-left a, .sidebar-right a {
+            padding: 10px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            text-align: left;
+
+        }
+        .sidebar-left a:hover, .sidebar-right a:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            width: 60%;
+            padding: 30px;
+            box-sizing: border-box;
+            background-color: white;
+            overflow-y: auto; /* Added to enable scrolling */
+            overflow-x: auto; /* Added to enable scrolling */
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            left: 25%;
+            top: 25%;
+            width: 50%;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .popup h2 {
+            margin-top: 0;
+        }
+        .popup .close {
+            display: block;
+            text-align: right;
+            margin-top: -10px;
+            margin-right: -10px;
+        }
+        .popup .close a {
+            color: #ADD8E6;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        footer {
+            height: 5%;
+            width: 100%;
+            text-align: center;
+            background-color: #ADD8E6;
+            color: white;
+            padding: 10px 0;
+            box-sizing: border-box;
+        }
+    </style>
+    <script>
+        let score = 0;
+        let currentQuestion = 0;
+        const correctAnswers = [
+            'A', 'C', 'B', 'D', 'A', 'B', 'E', 'C', 'D', 'A'
+        ];
+
+        function showPopup(questionNumber) {
+            const popupId = `popup${questionNumber}`;
+            document.getElementById(popupId).style.display = 'block';
+        }
+
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+            currentQuestion++;
+            if (currentQuestion < 10) {
+                showPopup(currentQuestion + 1);
+            } else {
+                alert(`Quiz completed! Your final score is: ${score} out of 10`);
+            }
+        }
+
+        function submitAnswer(questionNumber) {
+            const selected = document.querySelector(`input[name="question${questionNumber}"]:checked`);
+            if (selected) {
+                const correctAnswer = correctAnswers[questionNumber - 1];
+                const answerContainer = document.getElementById('answer-container');
+                if (selected.value === correctAnswer) {
+                    score++;
+                    answerContainer.innerHTML += `<p>Question ${questionNumber}: Correct</p>`;
+                } else {
+                    answerContainer.innerHTML += `<p>Question ${questionNumber}: Incorrect, the correct answer is ${correctAnswer}</p>`;
+                }
+                document.getElementById('score-container').innerHTML = `<h3>Score: ${score} out of 10</h3>`;
+            }
+        }
+
+        function reviewAnswer(questionNumber) {
+            const selected = document.querySelector(`input[name="question${questionNumber}"]:checked`);
+            if (selected) {
+                const correctAnswer = correctAnswers[questionNumber - 1];
+                if (selected.value === correctAnswer) {
+                    alert("Correct!");
+                } else {
+                    alert(`Incorrect! The correct answer is ${correctAnswer}`);
+                }
+            } else {
+                alert("Please select an answer.");
+            }
+        }
+
+        function startQuiz() {
+            showPopup(1);
+        }
+
+        window.onload = startQuiz;
+    </script>
+</head>
+<body>
+    <header>
+        <header>
+
+            <img src="logo with xSTO.png" class="logo left-logo" alt="Left Logo">
+            <h2 style="font-size: rem; color:#d2a993">Welcome to AM8760</h2>
+            <img src="logo with xSTO.png" class="logo right-logo" alt="Right Logo">
+        </header>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="vision.html">Vision</a>
+        <a href="key_performance_indicators.html">Key Performance Indicators</a>
+        <a href="financial_report.html">Financial Report</a>
+        <a href="stateoftheasset.html">State of the Asset Table</a>
+        <a href="risk.html">5x5 Risk Table</a>
+        <a href="capital_investment_decision.html">Capital Investment Decision</a>
+        <a href="training.html">TRAINING</a>
+        <a href="knowledge_test.html">Knowledge Test</a>
+    </nav>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2 style="font-size: rem; color:#d2a993">Quick Links</h2>
+            <a href="bulk_material_handling_main.html" style="background-color: red;">1.0 Bulk Material Handling</a>
+            <a href="storage_shed_main.html" style="background-color: blue;">2.0 Storage Sheds</a>
+            <a href="rail_infrastructure_main.html" style="background-color: green;">3.0 Rail Infrastructure</a>
+            <a href="ship_loader_unloader.html" style="background-color: yellow;">4.0 Ship Loader/Unloader</a>
+            <a href="dust_suppression.html" style="background-color: purple;">5.0 Dust Suppression Systems</a>
+            <a href="weighbridges.html" style="background-color: orange;">6.0 Weighbridges</a>
+            <a href="security_systems.html" style="background-color: pink;">7.0 Security Systems</a>
+            <a href="spare.html" style="background-color: brown;">8.0 SPARE</a>
+            <a href="wharves.html" style="background-color: cyan;">9.0 Wharves, Berths and Jetties</a>
+            <a href="breakwaters.html" style="background-color: magenta;">10.0 Breakwaters</a>
+            <a href="navigational_aids.html" style="background-color: lime;">11.0 Navigational Aids</a>
+            <a href="channels.html" style="background-color: teal;">12.0 Channels</a>
+            <a href="ict_tangible.html" style="background-color: navy;">13.0 ICT Tangible Assets</a>
+            <a href="ict_intangible.html" style="background-color: olive;">14.0 ICT Intangible Assets</a>
+            <a href="hr.html" style="background-color: maroon;">15.0 Human Resources Management</a>
+            <a href="power.html" style="background-color: silver;">16.0 Power</a>
+            <a href="utilities.html" style="background-color: gold;">17.0 Utilities</a>
+        </div>
+        <div class="main-content">
+            <h2>ISO55000 Questions</h2>
+            <p>Answer the questions as they appear. Your score will be displayed on the right.</p>
+        </div>
+        <div class="sidebar-right">
+            <div id="score-container">
+                <h3>Score: 0 out of 10</h3>
+            </div>
+            <div id="answer-container">
+                <h3>Correct Answers:</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup windows for each question -->
+    <div id="popup1" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup1')">&times;</a></div>
+        <h2>Question 1</h2>
+        <p>What is the primary focus of ISO 55000?</p>
+        <ul>
+            <li><label><input type="radio" name="question1" value="A"> A. Asset management</label></li>
+            <li><label><input type="radio" name="question1" value="B"> B. Quality management</label></li>
+            <li><label><input type="radio" name="question1" value="C"> C. Environmental management</label></li>
+            <li><label><input type="radio" name="question1" value="D"> D. Information security management</label></li>
+            <li><label><input type="radio" name="question1" value="E"> E. Occupational health and safety management</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(1);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(1); closePopup('popup1');">Submit</button>
+    </div>
+    <div id="popup2" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup2')">&times;</a></div>
+        <h2>Question 2</h2>
+        <p>Which clause in ISO 55000 specifies the requirements for an asset management system?</p>
+        <ul>
+            <li><label><input type="radio" name="question2" value="A"> A. Clause 4</label></li>
+            <li><label><input type="radio" name="question2" value="B"> B. Clause 5</label></li>
+            <li><label><input type="radio" name="question2" value="C"> C. Clause 6</label></li>
+            <li><label><input type="radio" name="question2" value="D"> D. Clause 7</label></li>
+            <li><label><input type="radio" name="question2" value="E"> E. Clause 8</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(2);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(2); closePopup('popup2');">Submit</button>
+    </div>
+    <div id="popup3" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup3')">&times;</a></div>
+        <h2>Question 3</h2>
+        <p>What is the purpose of asset management according to ISO 55000?</p>
+        <ul>
+            <li><label><input type="radio" name="question3" value="A"> A. To reduce costs</label></li>
+            <li><label><input type="radio" name="question3" value="B"> B. To achieve organizational objectives</label></li>
+            <li><label><input type="radio" name="question3" value="C"> C. To increase asset value</label></li>
+            <li><label><input type="radio" name="question3" value="D"> D. To comply with regulations</label></li>
+            <li><label><input type="radio" name="question3" value="E"> E. To ensure safety</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(3);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(3); closePopup('popup3');">Submit</button>
+    </div>
+    <div id="popup4" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup4')">&times;</a></div>
+        <h2>Question 4</h2>
+        <p>Which of the following is NOT a key principle of ISO 55000?</p>
+        <ul>
+            <li><label><input type="radio" name="question4" value="A"> A. Value</label></li>
+            <li><label><input type="radio" name="question4" value="B"> B. Alignment</label></li>
+            <li><label><input type="radio" name="question4" value="C"> C. Leadership</label></li>
+            <li><label><input type="radio" name="question4" value="D"> D. Cost reduction</label></li>
+            <li><label><input type="radio" name="question4" value="E"> E. Assurance</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(4);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(4); closePopup('popup4');">Submit</button>
+    </div>
+    <div id="popup5" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup5')">&times;</a></div>
+        <h2>Question 5</h2>
+        <p>What is the role of top management in ISO 55000?</p>
+        <ul>
+            <li><label><input type="radio" name="question5" value="A"> A. To demonstrate leadership and commitment</label></li>
+            <li><label><input type="radio" name="question5" value="B"> B. To manage daily operations</label></li>
+            <li><label><input type="radio" name="question5" value="C"> C. To conduct internal audits</label></li>
+            <li><label><input type="radio" name="question5" value="D"> D. To develop asset management plans</label></li>
+            <li><label><input type="radio" name="question5" value="E"> E. To provide technical support</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(5);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(5); closePopup('popup5');">Submit</button>
+    </div>
+    <div id="popup6" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup6')">&times;</a></div>
+        <h2>Question 6</h2>
+        <p>What is a key benefit of implementing ISO 55000?</p>
+        <ul>
+            <li><label><input type="radio" name="question6" value="A"> A. Increased paperwork</label></li>
+            <li><label><input type="radio" name="question6" value="B"> B. Improved organizational performance</label></li>
+            <li><label><input type="radio" name="question6" value="C"> C. Higher operational costs</label></li>
+            <li><label><input type="radio" name="question6" value="D"> D. More complex processes</label></li>
+            <li><label><input type="radio" name="question6" value="E"> E. Enhanced technical knowledge</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(6);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(6); closePopup('popup6');">Submit</button>
+    </div>
+    <div id="popup7" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup7')">&times;</a></div>
+        <h2>Question 7</h2>
+        <p>What does ISO 55000 require organizations to establish and maintain?</p>
+        <ul>
+            <li><label><input type="radio" name="question7" value="A"> A. Financial records</label></li>
+            <li><label><input type="radio" name="question7" value="B"> B. Quality control procedures</label></li>
+            <li><label><input type="radio" name="question7" value="C"> C. Environmental policies</label></li>
+            <li><label><input type="radio" name="question7" value="D"> D. IT systems</label></li>
+            <li><label><input type="radio" name="question7" value="E"> E. Asset management system</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(7);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(7); closePopup('popup7');">Submit</button>
+    </div>
+    <div id="popup8" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup8')">&times;</a></div>
+        <h2>Question 8</h2>
+        <p>Which document provides guidance on implementing ISO 55000?</p>
+        <ul>
+            <li><label><input type="radio" name="question8" value="A"> A. ISO 9001</label></li>
+            <li><label><input type="radio" name="question8" value="B"> B. ISO 14001</label></li>
+            <li><label><input type="radio" name="question8" value="C"> C. ISO 55002</label></li>
+            <li><label><input type="radio" name="question8" value="D"> D. ISO 45001</label></li>
+            <li><label><input type="radio" name="question8" value="E"> E. ISO 31000</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(8);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(8); closePopup('popup8');">Submit</button>
+    </div>
+    <div id="popup9" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup9')">&times;</a></div>
+        <h2>Question 9</h2>
+        <p>How often should an organization review its asset management system?</p>
+        <ul>
+            <li><label><input type="radio" name="question9" value="A"> A. Monthly</label></li>
+            <li><label><input type="radio" name="question9" value="B"> B. Quarterly</label></li>
+            <li><label><input type="radio" name="question9" value="C"> C. Biannually</label></li>
+            <li><label><input type="radio" name="question9" value="D"> D. Annually</label></li>
+            <li><label><input type="radio" name="question9" value="E"> E. Every two years</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(9);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(9); closePopup('popup9');">Submit</button>
+    </div>
+    <div id="popup10" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup10')">&times;</a></div>
+        <h2>Question 10</h2>
+        <p>What should be included in an asset management policy according to ISO 55000?</p>
+        <ul>
+            <li><label><input type="radio" name="question10" value="A"> A. Objectives and commitment to asset management</label></li>
+            <li><label><input type="radio" name="question10" value="B"> B. Financial performance targets</label></li>
+            <li><label><input type="radio" name="question10" value="C"> C. Environmental impact assessments</label></li>
+            <li><label><input type="radio" name="question10" value="D"> D. Quality control procedures</label></li>
+            <li><label><input type="radio" name="question10" value="E"> E. IT system requirements</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(10);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(10); closePopup('popup10');">Submit</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 AM8760 Asset Management Mastery Plus. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM8760 - ISO55000 Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            height: 20%;
+            width: 100%;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .logo {
+            height: 100%;
+            width: 10%;
+            position: absolute;
+            top: 0;
+        }
+        .left-logo {
+            left: 0;
+        }
+        .right-logo {
+            right: 0;
+        }
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            box-sizing: border-box;
+        }
+        nav a {
+            display: block;
+            color: white;
+            text-align: left;
+            padding: 14px 16px;
+            text-decoration: none;
+            flex: 1;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            flex-wrap: nowrap;
+            height: 60vh;
+            box-sizing: border-box;
+        }
+        .sidebar-left, .sidebar-right {
+            width: 20%;
+            background-color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .sidebar-left a, .sidebar-right a {
+            padding: 10px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            text-align: left;
+        }
+        .sidebar-left a:hover, .sidebar-right a:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            width: 60%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: white;
+            overflow-y: auto; /* Added to enable scrolling */
+        }
+        footer {
+            height: 10%;
+            width: 100%;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            box-sizing: border-box;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            left: 25%;
+            top: 10%;
+            width: 50%;
+            height: 60%;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .popup h2 {
+            margin-top: 0;
+        }
+        .popup .close {
+            display: block;
+            text-align: right;
+            margin-top: -10px;
+            margin-right: -10px;
+        }
+        .popup .close a {
+            color: #333;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin-bottom: 10px;
+        }
+        .question label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .submit-button, .review-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .review-button {
+            background-color: #f39c12;
+        }
+        #score-container, #answer-container {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            color: black;
+        }
+    </style>
+    <script>
+        let score = 0;
+        let currentQuestion = 0;
+        const correctAnswers = [
+            'C', 'B', 'B', 'B', 'C', 'B', 'A', 'B', 'B', 'B',
+            'B', 'B', 'C', 'B', 'B', 'B', 'B', 'B', 'B', 'C',
+            'B', 'B', 'B', 'B', 'B', 'B', 'A', 'B', 'B', 'B'
+        ];
+
+        function showPopup(questionNumber) {
+            const popupId = `popup${questionNumber}`;
+            document.getElementById(popupId).style.display = 'block';
+        }
+
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+            currentQuestion++;
+            if (currentQuestion < 30) {
+                showPopup(currentQuestion + 1);
+            } else {
+                alert(`Quiz completed! Your final score is: ${score} out of 30`);
+            }
+        }
+
+        function submitAnswer(questionNumber) {
+            const selected = document.querySelector(`input[name="question${questionNumber}"]:checked`);
+            if (selected) {
+                const correctAnswer = correctAnswers[questionNumber - 1];
+                const answerContainer = document.getElementById('answer-container');
+                if (selected.value === correctAnswer) {
+                    score++;
+                    answerContainer.innerHTML += `<p>Question ${questionNumber}: Correct</p>`;
+                } else {
+                    answerContainer.innerHTML += `<p>Question ${questionNumber}: Incorrect, the correct answer is ${correctAnswer}</p>`;
+                }
+                document.getElementById('score-container').innerHTML = `<h3>Score: ${score} out of 30</h3>`;
+            }
+        }
+
+        function reviewAnswer(questionNumber) {
+            const selected = document.querySelector(`input[name="question${questionNumber}"]:checked`);
+            if (selected) {
+                const correctAnswer = correctAnswers[questionNumber - 1];
+                if (selected.value === correctAnswer) {
+                    alert("Correct!");
+                } else {
+                    alert(`Incorrect! The correct answer is ${correctAnswer}`);
+                }
+            } else {
+                alert("Please select an answer.");
+            }
+        }
+
+        function startQuiz() {
+            showPopup(1);
+        }
+
+        window.onload = startQuiz;
+    </script>
+</head>
+<body>
+    <header>
+        <img src="sample_logo.jpg" class="logo left-logo" alt="Left Logo">
+        AM8760 - ISO55000 Questions
+        <img src="sample_logo.jpg" class="logo right-logo" alt="Right Logo">
+    </header>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="vision.html">Vision</a>
+        <a href="key_performance_indicators.html">Key Performance Indicators</a>
+        <a href="financial_report.html">Financial Report</a>
+        <a href="state_of_the_asset_table.html">State of the Asset Table</a>
+        <a href="5x5_risk_table.html">5x5 Risk Table</a>
+        <a href="capital_investment_decision.html">Capital Investment Decision</a>
+        <a href="training.html">TRAINING</a>
+    </nav>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2>Quick Links</h2>
+            <a href="bulk_material_handling_main.html" style="background-color: red;">1.0 Bulk Material Handling</a>
+            <a href="storage_sheds.html" style="background-color: blue;">2.0 Storage Sheds</a>
+            <a href="rail_infrastructure.html" style="background-color: green;">3.0 Rail Infrastructure</a>
+            <a href="ship_loader_unloader.html" style="background-color: yellow;">4.0 Ship Loader/Unloader</a>
+            <a href="dust_suppression.html" style="background-color: purple;">5.0 Dust Suppression Systems</a>
+            <a href="weighbridges.html" style="background-color: orange;">6.0 Weighbridges</a>
+            <a href="security_systems.html" style="background-color: pink;">7.0 Security Systems</a>
+            <a href="spare.html" style="background-color: brown;">8.0 SPARE</a>
+            <a href="wharves.html" style="background-color: cyan;">9.0 Wharves, Berths and Jetties</a>
+            <a href="breakwaters.html" style="background-color: magenta;">10.0 Breakwaters</a>
+            <a href="navigational_aids.html" style="background-color: lime;">11.0 Navigational Aids</
+
+a>
+            <a href="channels.html" style="background-color: teal;">12.0 Channels</a>
+            <a href="ict_tangible.html" style="background-color: navy;">13.0 ICT Tangible Assets</a>
+            <a href="ict_intangible.html" style="background-color: olive;">14.0 ICT Intangible Assets</a>
+            <a href="hr.html" style="background-color: maroon;">15.0 Human Resources Management</a>
+            <a href="power.html" style="background-color: silver;">16.0 Power</a>
+            <a href="utilities.html" style="background-color: gold;">17.0 Utilities</a>
+        </div>
+        <div class="main-content">
+            <h2>ISO55000 Questions</h2>
+            <p>Answer the questions as they appear. Your score will be displayed on the right.</p>
+        </div>
+        <div class="sidebar-right">
+            <div id="score-container">
+                <h3>Score: 0 out of 30</h3>
+            </div>
+            <div id="answer-container">
+                <h3>Correct Answers:</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup windows for each question -->
+    <div id="popup1" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup1')">&times;</a></div>
+        <h2>Question 1</h2>
+        <p>What is the primary objective of maintenance management according to the GFMAM framework?</p>
+        <ul>
+            <li><label><input type="radio" name="question1" value="A"> A) Maximizing asset lifespan</label></li>
+            <li><label><input type="radio" name="question1" value="B"> B) Minimizing maintenance costs</label></li>
+            <li><label><input type="radio" name="question1" value="C"> C) Ensuring operational efficiency and reliability</label></li>
+            <li><label><input type="radio" name="question1" value="D"> D) Reducing downtime</label></li>
+            <li><label><input type="radio" name="question1" value="E"> E) Enhancing safety protocols</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(1);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(1); closePopup('popup1');">Submit</button>
+    </div>
+    <div id="popup2" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup2')">&times;</a></div>
+        <h2>Question 2</h2>
+        <p>Which of the following is NOT one of the key components of the GFMAM Maintenance Management Framework?</p>
+        <ul>
+            <li><label><input type="radio" name="question2" value="A"> A) Maintenance Strategy</label></li>
+            <li><label><input type="radio" name="question2" value="B"> B) Asset Knowledge Management</label></li>
+            <li><label><input type="radio" name="question2" value="C"> C) Maintenance Execution</label></li>
+            <li><label><input type="radio" name="question2" value="D"> D) Performance Management</label></li>
+            <li><label><input type="radio" name="question2" value="E"> E) Risk and Review</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(2);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(2); closePopup('popup2');">Submit</button>
+    </div>
+    <div id="popup3" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup3')">&times;</a></div>
+        <h2>Question 3</h2>
+        <p>According to the GFMAM framework, what is a primary activity in Maintenance Strategy?</p>
+        <ul>
+            <li><label><input type="radio" name="question3" value="A"> A) Conducting day-to-day maintenance tasks</label></li>
+            <li><label><input type="radio" name="question3" value="B"> B) Developing and implementing a maintenance plan</label></li>
+            <li><label><input type="radio" name="question3" value="C"> C) Training maintenance staff</label></li>
+            <li><label><input type="radio" name="question3" value="D"> D) Documenting asset failures</label></li>
+            <li><label><input type="radio" name="question3" value="E"> E) Negotiating with suppliers</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(3);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(3); closePopup('popup3');">Submit</button>
+    </div>
+    <div id="popup4" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup4')">&times;</a></div>
+        <h2>Question 4</h2>
+        <p>Which of the following best describes the role of Performance Management in maintenance?</p>
+        <ul>
+            <li><label><input type="radio" name="question4" value="A"> A) Managing routine maintenance activities</label></li>
+            <li><label><input type="radio" name="question4" value="B"> B) Setting maintenance objectives and monitoring progress</label></li>
+            <li><label><input type="radio" name="question4" value="C"> C) Repairing and replacing faulty equipment</label></li>
+            <li><label><input type="radio" name="question4" value="D"> D) Documenting maintenance costs</label></li>
+            <li><label><input type="radio" name="question4" value="E"> E) Conducting safety inspections</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(4);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(4); closePopup('popup4');">Submit</button>
+    </div>
+    <div id="popup5" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup5')">&times;</a></div>
+        <h2>Question 5</h2>
+        <p>What does the GFMAM framework identify as a critical aspect of Maintenance Execution?</p>
+        <ul>
+            <li><label><input type="radio" name="question5" value="A"> A) Scheduling maintenance tasks</label></li>
+            <li><label><input type="radio" name="question5" value="B"> B) Performing emergency repairs</label></li>
+            <li><label><input type="radio" name="question5" value="C"> C) Ensuring maintenance tasks are completed as planned</label></li>
+            <li><label><input type="radio" name="question5" value="D"> D) Outsourcing maintenance work</label></li>
+            <li><label><input type="radio" name="question5" value="E"> E) Documenting maintenance activities</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(5);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(5); closePopup('popup5');">Submit</button>
+    </div>
+    <div id="popup6" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup6')">&times;</a></div>
+        <h2>Question 6</h2>
+        <p>What is the primary focus of Asset Knowledge Management in the GFMAM framework?</p>
+        <ul>
+            <li><label><input type="radio" name="question6" value="A"> A) Training employees</label></li>
+            <li><label><input type="radio" name="question6" value="B"> B) Ensuring accessibility of asset information</label></li>
+            <li><label><input type="radio" name="question6" value="C"> C) Conducting risk assessments</label></li>
+            <li><label><input type="radio" name="question6" value="D"> D) Developing maintenance schedules</label></li>
+            <li><label><input type="radio" name="question6" value="E"> E) Negotiating with suppliers</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(6);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(6); closePopup('popup6');">Submit</button>
+    </div>
+    <div id="popup7" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup7')">&times;</a></div>
+        <h2>Question 7</h2>
+        <p>Which of the following is a
+
+ key activity in the Risk and Review component?</p>
+        <ul>
+            <li><label><input type="radio" name="question7" value="A"> A) Developing risk management plans</label></li>
+            <li><label><input type="radio" name="question7" value="B"> B) Conducting regular financial audits</label></li>
+            <li><label><input type="radio" name="question7" value="C"> C) Training maintenance personnel</label></li>
+            <li><label><input type="radio" name="question7" value="D"> D) Managing stakeholder relationships</label></li>
+            <li><label><input type="radio" name="question7" value="E"> E) Documenting asset performance</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(7);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(7); closePopup('popup7');">Submit</button>
+    </div>
+    <div id="popup8" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup8')">&times;</a></div>
+        <h2>Question 8</h2>
+        <p>In the context of maintenance management, what does the term "Preventive Maintenance" refer to?</p>
+        <ul>
+            <li><label><input type="radio" name="question8" value="A"> A) Repairing assets after a failure</label></li>
+            <li><label><input type="radio" name="question8" value="B"> B) Scheduled activities to prevent asset failure</label></li>
+            <li><label><input type="radio" name="question8" value="C"> C) Minimizing maintenance costs</label></li>
+            <li><label><input type="radio" name="question8" value="D"> D) Documenting maintenance history</label></li>
+            <li><label><input type="radio" name="question8" value="E"> E) Conducting risk assessments</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(8);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(8); closePopup('popup8');">Submit</button>
+    </div>
+    <div id="popup9" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup9')">&times;</a></div>
+        <h2>Question 9</h2>
+        <p>What is the significance of 'Condition Monitoring' in maintenance management?</p>
+        <ul>
+            <li><label><input type="radio" name="question9" value="A"> A) Ensuring compliance with regulatory standards</label></li>
+            <li><label><input type="radio" name="question9" value="B"> B) Monitoring the condition of assets to predict failures</label></li>
+            <li><label><input type="radio" name="question9" value="C"> C) Minimizing operational costs</label></li>
+            <li><label><input type="radio" name="question9" value="D"> D) Training maintenance staff</label></li>
+            <li><label><input type="radio" name="question9" value="E"> E) Conducting safety inspections</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(9);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(9); closePopup('popup9');">Submit</button>
+    </div>
+    <div id="popup10" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup10')">&times;</a></div>
+        <h2>Question 10</h2>
+        <p>Which of the following is NOT a benefit of effective maintenance management?</p>
+        <ul>
+            <li><label><input type="radio" name="question10" value="A"> A) Improved asset reliability</label></li>
+            <li><label><input type="radio" name="question10" value="B"> B) Increased downtime</label></li>
+            <li><label><input type="radio" name="question10" value="C"> C) Enhanced safety</label></li>
+            <li><label><input type="radio" name="question10" value="D"> D) Better resource utilization</label></li>
+            <li><label><input type="radio" name="question10" value="E"> E) Reduced maintenance costs</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(10);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(10); closePopup('popup10');">Submit</button>
+    </div>
+    <div id="popup11" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup11')">&times;</a></div>
+        <h2>Question 11</h2>
+        <p>According to the GFMAM framework, which element is essential for effective Maintenance Strategy?</p>
+        <ul>
+            <li><label><input type="radio" name="question11" value="A"> A) Ignoring asset history</label></li>
+            <li><label><input type="radio" name="question11" value="B"> B) Developing a detailed maintenance plan</label></li>
+            <li><label><input type="radio" name="question11" value="C"> C) Minimizing stakeholder engagement</label></li>
+            <li><label><input type="radio" name="question11" value="D"> D) Focusing solely on corrective maintenance</label></li>
+            <li><label><input type="radio" name="question11" value="E"> E) Outsourcing maintenance tasks</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(11);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(11); closePopup('popup11');">Submit</button>
+    </div>
+    <div id="popup12" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup12')">&times;</a></div>
+        <h2>Question 12</h2>
+        <p>What does the GFMAM framework suggest about the importance of stakeholder engagement?</p>
+        <ul>
+            <li><label><input type="radio" name="question12" value="A"> A) It should be limited to senior management</label></li>
+            <li><label><input type="radio" name="question12" value="B"> B) It is crucial for understanding maintenance needs</label></li>
+            <li><label><input type="radio" name="question12" value="C"> C) It should be avoided to reduce conflicts</label></li>
+            <li><label><input type="radio" name="question12" value="D"> D) It is only necessary during major failures</label></li>
+            <li><label><input type="radio" name="question12" value="E"> E) It should focus exclusively on regulatory bodies</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(12);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(12); closePopup('popup12');">Submit</button>
+    </div>
+    <div id="popup13" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup13')">&times;</a></div>
+        <h2>Question 13</h2>
+        <p>What is a key output of the Asset Knowledge Management process?</p>
+        <ul>
+            <li><label><input type="radio" name="question13" value="A"> A) Financial statements</label></li>
+            <li><label><input type="radio" name="question13" value="B"> B) Maintenance strategy</label></li>
+            <li><label><input type="radio" name="question13" value="C"> C) Comprehensive and accessible asset information</label></li>
+            <li><label><input type="radio" name="question13" value="D"> D) Maintenance schedules</label></li>
+            <li><label><input type="radio" name="question13" value="E"> E) Compliance reports</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(13);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(13); closePopup('popup13');">Submit</button>
+    </div>
+    <div id="popup14" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup14')">&times;</a></div>
+        <h2>Question 14</h2>
+        <p>In the context of the GFMAM framework, what does 'Reliability Centered Maintenance' (RCM) refer to?</p>
+        <ul>
+            <li><label><input type="radio" name="question14" value="A"> A) Maxim
+
+izing asset disposal returns</label></li>
+            <li><label><input type="radio" name="question14" value="B"> B) Identifying maintenance tasks to ensure asset reliability</label></li>
+            <li><label><input type="radio" name="question14" value="C"> C) Minimizing initial capital expenditure</label></li>
+            <li><label><input type="radio" name="question14" value="D"> D) Outsourcing maintenance tasks</label></li>
+            <li><label><input type="radio" name="question14" value="E"> E) Enhancing employee satisfaction</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(14);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(14); closePopup('popup14');">Submit</button>
+    </div>
+    <div id="popup15" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup15')">&times;</a></div>
+        <h2>Question 15</h2>
+        <p>Which of the following best describes the role of Continuous Improvement in maintenance management?</p>
+        <ul>
+            <li><label><input type="radio" name="question15" value="A"> A) Maintaining the status quo</label></li>
+            <li><label><input type="radio" name="question15" value="B"> B) Regularly reviewing and enhancing maintenance practices</label></li>
+            <li><label><input type="radio" name="question15" value="C"> C) Avoiding changes to reduce risks</label></li>
+            <li><label><input type="radio" name="question15" value="D"> D) Focusing on short-term gains</label></li>
+            <li><label><input type="radio" name="question15" value="E"> E) Reducing stakeholder engagement</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(15);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(15); closePopup('popup15');">Submit</button>
+    </div>
+    <div id="popup16" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup16')">&times;</a></div>
+        <h2>Question 16</h2>
+        <p>What does the GFMAM framework identify as a critical aspect of Maintenance Performance Monitoring?</p>
+        <ul>
+            <li><label><input type="radio" name="question16" value="A"> A) Ignoring external factors</label></li>
+            <li><label><input type="radio" name="question16" value="B"> B) Continuously tracking and analyzing maintenance performance data</label></li>
+            <li><label><input type="radio" name="question16" value="C"> C) Conducting performance reviews once a year</label></li>
+            <li><label><input type="radio" name="question16" value="D"> D) Delegating performance monitoring to external consultants</label></li>
+            <li><label><input type="radio" name="question16" value="E"> E) Focusing only on financial performance</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(16);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(16); closePopup('popup16');">Submit</button>
+    </div>
+    <div id="popup17" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup17')">&times;</a></div>
+        <h2>Question 17</h2>
+        <p>Which of the following is a key principle of Maintenance Management according to the GFMAM framework?</p>
+        <ul>
+            <li><label><input type="radio" name="question17" value="A"> A) Short-term financial gains</label></li>
+            <li><label><input type="radio" name="question17" value="B"> B) Risk-based decision making</label></li>
+            <li><label><input type="radio" name="question17" value="C"> C) Minimal stakeholder involvement</label></li>
+            <li><label><input type="radio" name="question17" value="D"> D) Exclusive focus on compliance</label></li>
+            <li><label><input type="radio" name="question17" value="E"> E) Isolated departmental efforts</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(17);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(17); closePopup('popup17');">Submit</button>
+    </div>
+    <div id="popup18" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup18')">&times;</a></div>
+        <h2>Question 18</h2>
+        <p>What is the purpose of the Maintenance Policy in the GFMAM framework?</p>
+        <ul>
+            <li><label><input type="radio" name="question18" value="A"> A) To outline technical maintenance procedures</label></li>
+            <li><label><input type="radio" name="question18" value="B"> B) To establish the organization’s approach to maintenance management</label></li>
+            <li><label><input type="radio" name="question18" value="C"> C) To set financial targets for the organization</label></li>
+            <li><label><input type="radio" name="question18" value="D"> D) To document asset failures</label></li>
+            <li><label><input type="radio" name="question18" value="E"> E) To outline employee compensation plans</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(18);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(18); closePopup('popup18');">Submit</button>
+    </div>
+    <div id="popup19" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup19')">&times;</a></div>
+        <h2>Question 19</h2>
+        <p>How does the GFMAM framework define 'Maintenance Management System'?</p>
+        <ul>
+            <li><label><input type="radio" name="question19" value="A"> A) A digital platform for asset tracking</label></li>
+            <li><label><input type="radio" name="question19" value="B"> B) A set of interrelated elements and activities to manage maintenance</label></li>
+            <li><label><input type="radio" name="question19" value="C"> C) A financial reporting tool</label></li>
+            <li><label><input type="radio" name="question19" value="D"> D) A compliance documentation software</label></li>
+            <li><label><input type="radio" name="question19" value="E"> E) A stakeholder communication plan</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(19);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(19); closePopup('popup19');">Submit</button>
+    </div>
+    <div id="popup20" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('popup20')">&times;</a></div>
+        <h2>Question 20</h2>
+        <p>Which of the following is NOT a component of the Maintenance Management Framework in the GFMAM?</p>
+        <ul>
+            <li><label><input type="radio" name="question20" value="A"> A) Leadership and Culture</label></li>
+            <li><label><input type="radio" name="question20" value="B"> B) Maintenance Strategy</label></li>
+            <li><label><input type="radio" name="question20" value="C"> C) Financial Reporting</label></li>
+            <li><label><input type="radio" name="question20" value="D"> D) Asset Knowledge Management</label></li>
+            <li><label><input type="radio" name="question20" value="E"> E) Risk and Review</label></li>
+        </ul>
+        <button class="review-button" onclick="reviewAnswer(20);">Review Answer</button>
+        <button class="submit-button" onclick="submitAnswer(20); closePopup('popup20');">Submit</button>
+    </div>
+
+    <footer>
+        <p>Port of Exsto - AM8760 Board Game © 2024. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+```
+
+This HTML code includes the updated question set and has the running score and correct answers displayed on the right sidebar. The pop-up windows for each question are set up to provide review and submission functionality.

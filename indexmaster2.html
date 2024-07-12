@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Mastery Plus - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .sidebar-left {
+            width: 20%;
+            background-color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+        }
+        .sidebar-left a {
+            padding: 10px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            border-radius: 4px;
+        }
+        .sidebar-left a:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            width: 65%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: white;
+        }
+        .sidebar-right {
+            width: 15%;
+            background-color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+        }
+        .sidebar-right a {
+            padding: 10px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            border-radius: 4px;
+        }
+        .sidebar-right a:hover {
+            background-color: #45a049;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td:nth-child(2) {
+            color: blue;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script>
+        function showModal(tableId) {
+            const tables = document.querySelectorAll('.modal-content table');
+            tables.forEach(table => {
+                table.style.display = 'none';
+            });
+            document.getElementById(tableId).style.display = 'table';
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Asset Mastery Plus</h1>
+    </header>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2>Quick Links</h2>
+            <a href="introduction.html">Introduction</a>
+            <a href="bulk_material_handling.html">Bulk Material Handling</a>
+            <a href="storage_sheds_event_scenarios.html">Storage Sheds</a>
+            <a href="rail_infrastructure.html">Rail Infrastructure</a>
+            <a href="port_cranes.html">Port Cranes</a>
+            <a href="dust_suppression.html">Dust Suppression</a>
+            <a href="weigh_bridges.html">Weigh Bridges</a>
+            <a href="security_systems.html">Security Systems</a>
+            <a href="wharves.html">Wharves</a>
+            <a href="breakwaters.html">Breakwaters</a>
+            <a href="channels.html">Channels</a>
+            <a href="ict_tangible.html">ICT Tangible</a>
+            <a href="ict_intangible.html">ICT Intangible</a>
+            <a href="hr.html">HR</a>
+        </div>
+        <div class="main-content">
+            <h2>Welcome to Asset Mastery Plus</h2>
+            <p>Welcome to AM8760, a cutting-edge training program designed to provide you with a comprehensive understanding of asset management principles and practices. This program is rooted in the guidelines and standards set by ISO 55001 and the GFMAM (Global Forum on Maintenance and Asset Management) Landscape Edition 3. AM8760 focuses on managing assets over the full 8760 hours in a year, emphasizing the importance of monetizing time at unit rates to express efficiency.</p>
+            <p>The AM8760 training program aims to equip asset managers, maintenance professionals, and organizational leaders with the skills and knowledge necessary to optimize asset value, ensure compliance, make informed investment decisions, manage human resources effectively, and minimize downtime. By the end of this program, you will be well-versed in the critical aspects of asset management and prepared to implement best practices within your organization.</p>
+            <p>Key Topics Covered:</p>
+            <ul>
+                <li>Asset Value Management</li>
+                <li>Compliance</li>
+                <li>Investment</li>
+                <li>HR Management</li>
+                <li>Downtime Management</li>
+            </ul>
+            <p>Alignment with ISO 55001 and GFMAM:</p>
+            <p>AM8760 is meticulously designed to align with ISO 55001 and the GFMAM Landscape Edition 3. This alignment ensures that the training program adheres to international best practices and standards in asset management, providing you with a solid foundation to build upon.</p>
+            <p>Training Outcomes:</p>
+            <ul>
+                <li>Develop a strategic approach to asset management.</li>
+                <li>Improve your ability to manage risks and ensure asset reliability.</li>
+                <li>Enhance your skills in financial planning and investment decision-making.</li>
+                <li>Foster a culture of continuous improvement and compliance within your organization.</li>
+                <li>Optimize the efficiency and effectiveness of your asset management practices.</li>
+            </ul>
+            <p>We encourage you to engage actively with the content, participate in discussions, and apply the concepts learned to real-world scenarios. Welcome to the journey of mastering asset management with AM8760!</p>
+        </div>
+        <div class="sidebar-right">
+            <h2>Risk Items</h2>
+            <a href="#" onclick="showModal('bulk-material-handling')">Bulk Material Handling</a>
+            <a href="#" onclick="showModal('storage-sheds')">Storage Sheds</a>
+            <a href="#" onclick="showModal('rail-infrastructure')">Rail Infrastructure</a>
+            <a href="#" onclick="showModal('port-cranes')">Port Cranes</a>
+            <a href="#" onclick="showModal('dust-suppression')">Dust Suppression</a>
+            <a href="#" onclick="showModal('weigh-bridges')">Weigh Bridges</a>
+            <a href="#" onclick="showModal('security-systems')">Security Systems</a>
+            <a href="#" onclick="showModal('wharves')">Wharves</a>
+            <a href="#" onclick="showModal('breakwaters')">Breakwaters</a>
+            <a href="#" onclick="showModal('channels')">Channels</a>
+            <a href="#" onclick="showModal('ict-tangible')">ICT Tangible</a>
+            <a href="#" onclick="showModal('ict-intangible')">ICT Intangible</a>
+            <a href="#" onclick="showModal('hr')">HR</a>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Asset Mastery Plus. All rights reserved.</p>
+    </footer>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            
+            <!-- Bulk Material Handling Table -->
+            <table id="bulk-material-handling" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Conveyor Belt Failure</td>
+                    <td class="blue-text">Significant downtime and operational loss</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Downtime Management</td>
+                </tr>
+                <tr>
+                    <td>Dust Emission Violation</td>
+                    <td class="blue-text">Environmental fines and sanctions</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>Compliance</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- Storage Sheds Table -->
+            <table id="storage-sheds" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Roof Leak</td>
+                    <td class="blue-text">Damage to stored materials</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <tr>
+                    <td>Structural Damage</td>
+                    <td class="blue-text">Potential collapse and safety hazard</td>
+                    <td>Low</td>
+                    <td>High</td>
+                    <td>Moderate</td>
+                    <td>Compliance</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- Rail Infrastructure Table -->
+            <table id="rail-infrastructure" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Track Failure</td>
+                    <td class="blue-text">Disruption of rail services</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Downtime Management</td>
+                </tr>
+                <tr>
+                    <td>Signal Failure</td>
+                    <td class="blue-text">Increased risk of accidents</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>Compliance</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- Port Cranes Table -->
+            <table id="port-cranes" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Mechanical Failure</td>
+                    <td class="blue-text">Operational halt and revenue loss</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Downtime Management</td>
+                </tr>
+                <tr>
+                    <td>Safety Violation</td>
+                    <td class="blue-text">Increased risk of accidents</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>HR Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- Dust Suppression Table -->
+            <table id="dust-suppression" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Dust Control System Failure</td>
+                    <td class="blue-text">Health risks and operational disruptions</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Compliance</td>
+                </tr>
+                <tr>
+                    <td>Water Supply Interruption</td>
+                    <td class="blue-text">Increased dust levels and potential health issues</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- Weigh Bridges Table -->
+            <table id="weigh-bridges" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Calibration Issue</td>
+                    <td class="blue-text">Inaccurate billing and potential disputes</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Compliance</td>
+                </tr>
+                <tr>
+                    <td>Mechanical Failure</td>
+                    <td class="blue-text">Operational disruptions and delays</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>Downtime Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- Security Systems Table -->
+            <table id="security-systems" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Security Breach</td>
+                    <td class="blue-text">Risk of theft or vandalism</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <tr>
+                    <td>Alarm System Failure</td>
+                    <td class="blue-text">Increased risk of unauthorized access</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>Compliance</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- Wharves Table -->
+            <table id="wharves" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Structural Damage</td>
+                    <td class="blue-text">Risk of collapse, high repair costs</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Compliance</td>
+                </tr>
+                <tr>
+                    <td>Pile Corrosion</td>
+                    <td class="blue-text">Reduced structural integrity, increased maintenance costs</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- Breakwaters Table -->
+            <table id="breakwaters" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Armor Unit Displacement</td>
+                    <td class="blue-text">Increased wave energy impacting the port</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <tr>
+                    <td>Scour at the Toe</td>
+                    <td class="blue-text">Risk of structural failure, increased maintenance costs</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>Compliance</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- Channels Table -->
+            <table id="channels" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Sediment Accumulation</td>
+                    <td class="blue-text">Disrupted navigation, increased risk of grounding</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Compliance</td>
+                </tr>
+                <tr>
+                    <td>Buoy Displacement</td>
+                    <td class="blue-text">Increased risk of accidents</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>Asset Value Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- ICT Tangible Table -->
+            <table id="ict-tangible" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Server Failure</td>
+                    <td class="blue-text">Operational halt, data loss</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Downtime Management</td>
+                </tr>
+                <tr>
+                    <td>Network Outage</td>
+                    <td class="blue-text">Disrupted communication, operational delays</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>Compliance</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- ICT Intangible Table -->
+            <table id="ict-intangible" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Data Breach</td>
+                    <td class="blue-text">Loss of data integrity, potential legal consequences</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Compliance</td>
+                </tr>
+                <tr>
+                    <td>Software Failure</td>
+                    <td class="blue-text">Operational disruption, potential data loss</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>Downtime Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+
+            <!-- HR Table -->
+            <table id="hr" style="display:none;">
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                </tr>
+                <tr>
+                    <td>Training Requirement</td>
+                    <td class="blue-text">Reduced operational efficiency</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>HR Management</td>
+                </tr>
+                <tr>
+                    <td>Staff Shortage</td>
+                    <td class="blue-text">Operational delays, increased workload for remaining staff</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>HR Management</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+        </div>
+    </div>
+</body>
+</html>

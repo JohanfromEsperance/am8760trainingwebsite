@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM8760 - Asset Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+        }
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+            height: 100vh;
+        }
+        .sidebar-left, .sidebar-right {
+            width: 20%;
+            background-color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            overflow-y: auto;
+        }
+        .sidebar-left a, .sidebar-right a {
+            padding: 10px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            border-radius: 4px;
+        }
+        .sidebar-left a:hover, .sidebar-right a:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            width: 60%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: white;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            left: 25%;
+            top: 25%;
+            width: 50%;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .popup h2 {
+            margin-top: 0;
+        }
+        .popup .close {
+            display: block;
+            text-align: right;
+            margin-top: -10px;
+            margin-right: -10px;
+        }
+        .popup .close a {
+            color: #333;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        AM8760 - Asset Management
+    </header>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="vision.html">Vision</a>
+        <a href="key_performance_indicators.html">Key Performance Indicators</a>
+        <a href="financial_report.html">Financial Report</a>
+        <a href="state_of_the_asset_table.html">State of the Asset Table</a>
+        <a href="5x5_risk_table.html">5x5 Risk Table</a>
+        <a href="capital_investment_decision.html">Capital Investment Decision</a>
+    </nav>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2>Quick Links</h2>
+            <a href="bulk_material_handling_main.html">Bulk Material Handling</a>
+            <a href="storage_sheds_asset_hierarchy.html">Storage Sheds</a>
+            <a href="rail_infrastructure.html">Rail Infrastructure</a>
+            <a href="port_cranes.html">Port Cranes</a>
+            <a href="dust_suppression.html">Dust Suppression</a>
+            <a href="weigh_bridges.html">Weigh Bridges</a>
+            <a href="security_systems.html">Security Systems</a>
+            <a href="wharves.html">Wharves</a>
+            <a href="breakwaters.html">Breakwaters</a>
+            <a href="channels.html">Channels</a>
+            <a href="ict_tangible.html">ICT Tangible</a>
+            <a href="ict_intangible.html">ICT Intangible</a>
+            <a href="hr.html">HR</a>
+        </div>
+        <div class="main-content">
+            <h2>Welcome to AM8760</h2>
+            <p>Use the links on the left to navigate through different asset classes and management strategies. Each link will provide detailed information and analysis to help you understand and manage each asset class effectively.</p>
+        </div>
+        <div class="sidebar-right">
+            <h2>Asset Classes</h2>
+            <a href="#" onclick="showPopup('bulkMaterialHandlingPopup')">Bulk Material Handling</a>
+            <a href="#" onclick="showPopup('storageShedsPopup')">Storage Sheds</a>
+            <a href="#" onclick="showPopup('railInfrastructurePopup')">Rail Infrastructure</a>
+            <a href="#" onclick="showPopup('portCranesPopup')">Port Cranes</a>
+            <a href="#" onclick="showPopup('dustSuppressionPopup')">Dust Suppression</a>
+            <a href="#" onclick="showPopup('weighBridgesPopup')">Weigh Bridges</a>
+            <a href="#" onclick="showPopup('securitySystemsPopup')">Security Systems</a>
+            <a href="#" onclick="showPopup('wharvesPopup')">Wharves</a>
+            <a href="#" onclick="showPopup('breakwatersPopup')">Breakwaters</a>
+            <a href="#" onclick="showPopup('channelsPopup')">Channels</a>
+            <a href="#" onclick="showPopup('ictTangiblePopup')">ICT Tangible</a>
+            <a href="#" onclick="showPopup('ictIntangiblePopup')">ICT Intangible</a>
+            <a href="#" onclick="showPopup('hrPopup')">HR</a>
+        </div>
+    </div>
+
+    <!-- Popup windows -->
+    <div id="bulkMaterialHandlingPopup" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('bulkMaterialHandlingPopup')">&times;</a></div>
+        <h2>Bulk Material Handling</h2>
+        <pre>Introduction
+            Bulk material handling is an essential component of port operations, particularly in the 
+            transportation and storage of materials such as coal,iron ore, grains, and other commodities. 
+            The effective management of these assets ensures the smooth flow of materials,reduces downtime,
+            and maintains operational efficiency. 
+
+            Criticality Levels of Services
+            1. Conveyor Systems:
+                Conveyor systems are the backbone of bulk material handling operations.
+                They transport materials from one location to another within the port facility. 
+                The criticality of conveyor systems lies in their ability to handle large volumes of 
+                materials continuously and efficiently. 
+                Any failure in this system can lead to significant operational disruptions and financial losses.
+            2. Transfer Systems:
+                Transfer systems, including transfer chutes and vibrating feeders, are crucial for directing 
+                materials between different 
+                conveyor belts or storage units. 
+                These systems must operate seamlessly to avoid blockages and spillage, which can lead to 
+                material loss and safety hazards.
+            3. Stacker/Reclaimer Systems:
+                Stacker/reclaimer systems play a vital role in the storage and retrieval of bulk materials. 
+                They ensure that materials are efficiently stacked in storage areas and reclaimed for further 
+                processing or shipping. 
+                The criticality of these systems is high due to their impact on storage capacity and material 
+                handling efficiency.
+            4. Dust Suppression Systems:
+                Dust suppression systems are essential for maintaining environmental compliance and ensuring 
+                the health and safety of workers. 
+                These systems control dust generated during material handling and transport, preventing 
+                respiratory issues and environmental pollution.
+            5. Electrical Systems:
+                Electrical systems, including power supply, lighting, and control systems, are critical for the 
+                overall operation of bulk material handling assets. 
+                Reliable electrical systems ensure continuous power supply, efficient lighting for safe operations, 
+                and effective control of automated processes.</pre>
+    </div>
+    <div id="storageShedsPopup" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('storageShedsPopup')">&times;</a></div>
+        <h2>Storage Sheds</h2>
+        <p>Storage Sheds are used for the temporary storage of materials. They protect materials from the elements and provide a controlled environment for storage.</p>
+    </div>
+    <div id="railInfrastructurePopup" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('railInfrastructurePopup')">&times;</a></div>
+        <h2>Rail Infrastructure</h2>
+        <p>Rail Infrastructure includes tracks, bridges, and other structures necessary for the operation of rail transport systems. Maintenance and upgrades are crucial for safety and efficiency.</p>
+    </div>
+    <div id="portCranesPopup" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('portCranesPopup')">&times;</a></div>
+        <h2>Port Cranes</h2>
+        <p>Port Cranes are essential for loading and unloading ships. They are a critical part of port operations and require regular maintenance and upgrades.</p>
+    </div>
+    <div id="dustSuppressionPopup" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('dustSuppressionPopup')">&times;</a></div>
+        <h2>Dust Suppression</h2>
+        <p>Dust Suppression systems are used to control dust generated during material handling and transport. Effective dust suppression is essential for environmental compliance and worker safety.</p>
+    </div>
+    <div id="weighBridgesPopup" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('weighBridgesPopup')">&times;</a></div>
+        <h2>Weigh Bridges</h2>
+        <p>Weigh Bridges are used to weigh vehicles and materials. Accurate weighing is crucial for inventory control and transport management.</p>
+    </div>
+    <div id="securitySystemsPopup" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('securitySystemsPopup')">&times;</a></div>
+        <h2>Security Systems</h2>
+        <p>Security Systems include surveillance cameras, access control, and other measures to protect assets and personnel from theft, vandalism, and other threats.</p>
+    </div>
+    <div id="wharvesPopup" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('wharvesPopup')">&times;</a></div>
+        <h2>Wharves</h2>
+        <p>Wharves are structures on the shore of a harbor where ships may dock to load and unload cargo. They are critical to port operations and require regular maintenance.</p>
+    </div>
+    <div id="breakwatersPopup" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('breakwatersPopup')">&times;</a></div>
+        <h2>Breakwaters</h2>
+        <p>Breakwaters are structures designed to protect a shore or harbor from the force of waves. They play a vital role in maintaining calm waters for safe docking and loading operations.</p>
+    </div>
+    <div id="channelsPopup" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('channelsPopup')">&times;</a></div>
+        <h2>Channels</h2>
+        <p>Channels are navigable paths through which ships travel. Regular dredging and maintenance ensure that channels remain deep enough for safe passage of vessels.</p>
+    </div>
+    <div id="ictTangiblePopup" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('ictTangiblePopup')">&times;</a></div>
+        <h2>ICT Tangible</h2>
+        <p>ICT Tangible assets include hardware such as servers, computers, and networking equipment. Regular updates and maintenance are required to keep these systems operational.</p>
+    </div>
+    <div id="ictIntangiblePopup" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('ictIntangiblePopup')">&times;</a></div>
+        <h2>ICT Intangible</h2>
+        <p>ICT Intangible assets include software and data. Ensuring software is up-to-date and data is securely backed up is essential for operational continuity.</p>
+    </div>
+    <div id="hrPopup" class="popup">
+        <div class="close"><a href="#" onclick="closePopup('hrPopup')">&times;</a></div>
+        <h2>HR</h2>
+        <p>HR (Human Resources) management is critical for ensuring the workforce is well-trained, motivated, and operating efficiently. It includes employee training, recruitment, and performance management.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Asset Mastery Plus. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showPopup(popupId) {
+            document.getElementById(popupId).style.display = 'block';
+        }
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>

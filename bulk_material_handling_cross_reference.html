@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Material Handling - Cross Reference Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .sidebar-left {
+            width: 20%;
+            background-color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+        }
+        .sidebar-left a {
+            padding: 10px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            border-radius: 4px;
+        }
+        .sidebar-left a:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: white;
+            overflow-y: auto; /* Added to enable scrolling */
+            overflow-x: auto; /* Added to enable scrolling */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td:nth-child(2) {
+            color: blue;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bulk Material Handling - Cross Reference Table</h1>
+    </header>
+    <div class="container">
+        <div class="sidebar-left">
+            <h2>Quick Links</h2>
+            <a href="bulk_material_handling_main.html">Return to Bulk Material Handling</a>
+        </div>
+        <div class="main-content">
+            <h2>Cross Reference Table</h2>
+            <table>
+                <tr>
+                    <th>Event</th>
+                    <th>Impact</th>
+                    <th>Likelihood</th>
+                    <th>Consequence</th>
+                    <th>Risk Ranking</th>
+                    <th>Decision Making Category</th>
+                    <th>ISO 55001 Clause</th>
+                    <th>GFMAM Paragraph</th>
+                </tr>
+                <tr>
+                    <td>Conveyor Belt Failure</td>
+                    <td class="blue-text">Significant downtime and operational loss</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Downtime Management</td>
+                    <td>7.5, 8.3</td>
+                    <td>2.1, 3.2</td>
+                </tr>
+                <tr>
+                    <td>Dust Emission Violation</td>
+                    <td class="blue-text">Environmental fines and sanctions</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>Compliance</td>
+                    <td>6.1, 9.1</td>
+                    <td>4.5, 5.3</td>
+                </tr>
+                <tr>
+                    <td>Equipment Overload</td>
+                    <td class="blue-text">Damage to equipment, safety risks</td>
+                    <td>High</td>
+                    <td>Severe</td>
+                    <td>Critical</td>
+                    <td>Asset Value Management</td>
+                    <td>8.1, 8.2</td>
+                    <td>3.3, 4.2</td>
+                </tr>
+                <tr>
+                    <td>Fire Incident</td>
+                    <td class="blue-text">Severe damage, operational halt</td>
+                    <td>Low</td>
+                    <td>High</td>
+                    <td>Moderate</td>
+                    <td>Compliance</td>
+                    <td>9.2, 9.3</td>
+                    <td>5.4, 5.6</td>
+                </tr>
+                <tr>
+                    <td>Vibration Issue</td>
+                    <td class="blue-text">Increased wear and tear, potential failure</td>
+                    <td>Medium</td>
+                    <td>Moderate</td>
+                    <td>High</td>
+                    <td>Investment</td>
+                    <td>7.3, 8.4</td>
+                    <td>3.5, 4.7</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </table>
+        </div>
+    </div>
+    <div class="sidebar-right">
+        <h2>Subpages</h2>
+        <a href="bulk_material_handling_description.html" style="background-color: red;">1.1 Asset Description</a>
+        <a href="bulk_material_handling_asset_hierarchy.html" style="background-color: blue;">1.2 Asset Hierarchy</a>
+        <a href="bulk_material_handling_risk_analysis.html" style="background-color: green;">1.3 Asset Risk Analysis</a>
+        <a href="bulk_material_handling_fmea.html" style="background-color: yellow;">1.4 Asset FMEA and PMO activities</a>
+        <a href="bulk_material_handling_strategies.html" style="background-color: purple;">1.5 Asset Strategies</a>
+        <a href="bulk_material_handling_maintenance_plans.html" style="background-color: orange;">1.6 Asset Maintenance Plans</a>
+        <a href="bulk_material_handling_wol_analysis.html" style="background-color: pink;">1.7 Asset WOL Analysis</a>
+        <a href="bulk_material_handling_event_scenarios.html" style="background-color: brown;">1.8 Asset Event Scenarios</a>
+        <a href="index.html" style="background-color: gray;">Return to Home Page</a>
+    </div>
+    </div>
+</body>
+</html>
+
